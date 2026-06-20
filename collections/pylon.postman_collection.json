@@ -1,0 +1,241 @@
+{
+  "info": {
+    "name": "Pylon API",
+    "description": "REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Bearer API token auth; base URL https://api.usepylon.com.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{api_token}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.usepylon.com" },
+    { "key": "api_token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Issues",
+      "item": [
+        {
+          "name": "List Issues",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/issues?start_time=2026-06-01T00:00:00Z&end_time=2026-06-20T00:00:00Z",
+              "host": ["{{baseUrl}}"],
+              "path": ["issues"],
+              "query": [
+                { "key": "start_time", "value": "2026-06-01T00:00:00Z" },
+                { "key": "end_time", "value": "2026-06-20T00:00:00Z" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Issue",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Login button not working\",\n  \"body_html\": \"<p>Customer reports the login button is unresponsive.</p>\",\n  \"account_id\": \"{{account_id}}\",\n  \"requester_id\": \"{{contact_id}}\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/issues", "host": ["{{baseUrl}}"], "path": ["issues"] }
+          }
+        },
+        {
+          "name": "Get Issue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/issues/{{issue_id}}", "host": ["{{baseUrl}}"], "path": ["issues", "{{issue_id}}"] }
+          }
+        },
+        {
+          "name": "Update Issue",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"state\": \"closed\"\n}" },
+            "url": { "raw": "{{baseUrl}}/issues/{{issue_id}}", "host": ["{{baseUrl}}"], "path": ["issues", "{{issue_id}}"] }
+          }
+        },
+        {
+          "name": "Search Issues",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"filter\": {\n    \"field\": \"state\",\n    \"operator\": \"equals\",\n    \"value\": \"open\"\n  }\n}" },
+            "url": { "raw": "{{baseUrl}}/issues/search", "host": ["{{baseUrl}}"], "path": ["issues", "search"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accounts",
+      "item": [
+        {
+          "name": "List Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/accounts", "host": ["{{baseUrl}}"], "path": ["accounts"] }
+          }
+        },
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Acme Corp\",\n  \"domains\": [\"acme.com\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/accounts", "host": ["{{baseUrl}}"], "path": ["accounts"] }
+          }
+        },
+        {
+          "name": "Get Account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/accounts/{{account_id}}", "host": ["{{baseUrl}}"], "path": ["accounts", "{{account_id}}"] }
+          }
+        },
+        {
+          "name": "Merge Accounts",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"merge_into_account_id\": \"{{account_id}}\",\n  \"merge_account_ids\": [\"{{other_account_id}}\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/accounts/merge", "host": ["{{baseUrl}}"], "path": ["accounts", "merge"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "List Contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contacts", "host": ["{{baseUrl}}"], "path": ["contacts"] }
+          }
+        },
+        {
+          "name": "Create Contact",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@acme.com\",\n  \"account_id\": \"{{account_id}}\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contacts", "host": ["{{baseUrl}}"], "path": ["contacts"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users and Teams",
+      "item": [
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/me", "host": ["{{baseUrl}}"], "path": ["me"] }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] }
+          }
+        },
+        {
+          "name": "List Teams",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/teams", "host": ["{{baseUrl}}"], "path": ["teams"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Knowledge Base",
+      "item": [
+        {
+          "name": "List Knowledge Bases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/knowledge-bases", "host": ["{{baseUrl}}"], "path": ["knowledge-bases"] }
+          }
+        },
+        {
+          "name": "List Articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/knowledge-bases/{{kb_id}}/articles", "host": ["{{baseUrl}}"], "path": ["knowledge-bases", "{{kb_id}}", "articles"] }
+          }
+        },
+        {
+          "name": "Create Article",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"How to reset your password\",\n  \"body_html\": \"<p>Steps to reset your password.</p>\",\n  \"collection_id\": \"{{collection_id}}\"\n}" },
+            "url": { "raw": "{{baseUrl}}/knowledge-bases/{{kb_id}}/articles", "host": ["{{baseUrl}}"], "path": ["knowledge-bases", "{{kb_id}}", "articles"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tags and Custom Fields",
+      "item": [
+        {
+          "name": "List Tags",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tags", "host": ["{{baseUrl}}"], "path": ["tags"] }
+          }
+        },
+        {
+          "name": "List Custom Fields",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/custom-fields", "host": ["{{baseUrl}}"], "path": ["custom-fields"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks and Projects",
+      "item": [
+        {
+          "name": "List Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/tasks", "host": ["{{baseUrl}}"], "path": ["tasks"] }
+          }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"title\": \"Follow up with customer\",\n  \"account_id\": \"{{account_id}}\"\n}" },
+            "url": { "raw": "{{baseUrl}}/tasks", "host": ["{{baseUrl}}"], "path": ["tasks"] }
+          }
+        }
+      ]
+    }
+  ]
+}

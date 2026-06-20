@@ -1,0 +1,147 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Pylon
+providerId: pylon
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Customer Support
+- Customer Operations
+- Ticketing
+- Knowledge Base
+- B2B
+- Plans
+description: >-
+  Pylon uses transparent, publicly-listed per-seat subscription pricing across
+  three core tiers (Starter, Professional, Enterprise) billed monthly or
+  annually, with minimum seat counts. The public REST API is included starting
+  with the Professional plan. AI Assistants, AI Agents, and Account
+  Intelligence are priced as add-ons.
+notes: >-
+  Per-seat prices below are annual-billing rates as published on the Pylon
+  pricing page; monthly billing is slightly higher. Verify current rates,
+  seat minimums, and feature gating on the pricing page during reconciliation.
+sources:
+- https://www.usepylon.com/pricing
+- https://docs.usepylon.com/pylon-docs/developer/api
+plans:
+- id: pylon-starter
+  name: Starter
+  type: subscription
+  description: >-
+    Core support inbox with email, chat widget, ticket forms, and knowledge
+    base. 3-seat minimum.
+  entries:
+  - label: Starter Seat
+    name: starter_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $59 per seat/mo (annual)
+    userMultiplied: true
+  elements:
+  - name: Support Inbox
+  - name: Email
+  - name: Chat Widget
+  - name: Ticket Forms
+  - name: Knowledge Base
+- id: pylon-professional
+  name: Professional
+  type: subscription
+  description: >-
+    Everything in Starter plus omnichannel connectors, broadcasts,
+    integrations, automations, analytics, view-only seats, and the public
+    REST API. 3-seat minimum.
+  entries:
+  - label: Professional Seat
+    name: professional_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $89 per seat/mo (annual)
+    userMultiplied: true
+  elements:
+  - name: Omnichannel Connectors
+  - name: Broadcasts
+  - name: Integrations
+  - name: Automations
+  - name: Analytics
+  - name: API Access
+  - name: View-Only Seats
+- id: pylon-enterprise
+  name: Enterprise
+  type: subscription
+  description: >-
+    Everything in Professional plus Microsoft Teams, customer portal, custom
+    reporting, data warehouse, role-based access control (RBAC), and MSA.
+    7-seat minimum.
+  entries:
+  - label: Enterprise Seat
+    name: enterprise_seat
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $139 per seat/mo (annual)
+    userMultiplied: true
+  elements:
+  - name: Microsoft Teams
+  - name: Customer Portal
+  - name: Custom Reporting
+  - name: Data Warehouse
+  - name: RBAC
+  - name: MSA
+- id: pylon-add-ons
+  name: Add-Ons
+  type: usage
+  description: >-
+    Advanced AI and intelligence capabilities priced on top of a core seat
+    plan.
+  entries:
+  - label: AI Assistants
+    name: ai_assistants
+    type: flat
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $50 per seat/mo (annual)
+    userMultiplied: true
+  - label: AI Agents
+    name: ai_agents
+    type: usage
+    metric: issues
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: starts at $100/mo, scales with issue volume
+    userMultiplied: false
+  - label: Account Intelligence
+    name: account_intelligence
+    type: usage
+    metric: accounts
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $10 per customer account/mo (50-account minimum)
+    userMultiplied: false
+  elements:
+  - name: AI Assistants
+  - name: AI Agents
+  - name: Account Intelligence
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,202 @@
+aid: pylon
+url: https://raw.githubusercontent.com/api-evangelist/pylon/refs/heads/main/apis.yml
+name: Pylon
+kind: company
+description: Pylon (usepylon.com) is a B2B customer support and customer operations
+  platform that unifies shared Slack, Microsoft Teams, email, and chat support into
+  a single ticketing system, with a knowledge base, accounts and contacts, AI agents,
+  and a documented public REST API at https://api.usepylon.com.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Customer Support
+- Customer Operations
+- Ticketing
+- Knowledge Base
+- B2B
+- Help Desk
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: pylon:pylon-issues-api
+  name: Pylon Issues API
+  tags:
+  - Issues
+  - Tickets
+  - Support
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api
+    type: Documentation
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Create, retrieve, update, search, snooze, and delete support issues
+    (tickets) across shared Slack, Teams, email, and chat channels, plus manage issue
+    followers and external issue links.
+- aid: pylon:pylon-accounts-api
+  name: Pylon Accounts API
+  tags:
+  - Accounts
+  - Customers
+  - CRM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Manage customer accounts - create, list, update (single or bulk), search,
+    merge, and delete - including domains, owners, tags, custom fields, and CRM settings.
+- aid: pylon:pylon-contacts-api
+  name: Pylon Contacts API
+  tags:
+  - Contacts
+  - People
+  - Customers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/contacts
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/contacts
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Create, retrieve, update, search, and delete the individual contacts
+    (end customers) associated with accounts and issues.
+- aid: pylon:pylon-users-teams-api
+  name: Pylon Users and Teams API
+  tags:
+  - Users
+  - Teams
+  - Organization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users
+    type: APIReference
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/teams
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: List, retrieve, update, and search internal Pylon users (agents), inspect
+    the authenticated user via /me, and create, list, retrieve, and update support
+    teams.
+- aid: pylon:pylon-knowledge-base-api
+  name: Pylon Knowledge Base API
+  tags:
+  - Knowledge Base
+  - Articles
+  - Collections
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/knowledge-base
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/knowledge-base
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Manage knowledge bases, their collections, and articles - listing knowledge
+    bases and performing full CRUD on collections, articles, and route redirects.
+- aid: pylon:pylon-tags-custom-fields-api
+  name: Pylon Tags and Custom Fields API
+  tags:
+  - Tags
+  - Custom Fields
+  - Metadata
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tags
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tags
+    type: APIReference
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/custom-fields
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Create, list, retrieve, update, and delete tags, and create, list,
+    retrieve, and update custom field definitions used to extend issues, accounts,
+    and contacts.
+- aid: pylon:pylon-tasks-projects-api
+  name: Pylon Tasks and Projects API
+  tags:
+  - Tasks
+  - Projects
+  - Milestones
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tasks-and-projects
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tasks-and-projects
+    type: APIReference
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  - url: collections/pylon.postman_collection.json
+    type: PostmanCollection
+  - url: collections/pylon.opencollection.json
+    type: OpenCollection
+  description: Manage customer-facing work with full CRUD and search on tasks, projects,
+    and milestones tied to accounts.
+- aid: pylon:pylon-webhooks-api
+  name: Pylon Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Triggers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.usepylon.com/pylon-docs/developer/webhooks
+  baseURL: https://api.usepylon.com
+  properties:
+  - url: https://docs.usepylon.com/pylon-docs/developer/webhooks
+    type: Documentation
+  - url: openapi/pylon-openapi.yml
+    type: OpenAPI
+  description: User-defined HTTP callbacks fired by Pylon Triggers on platform events
+    (such as issue created or updated). Each delivery carries an HS256-signed timestamped
+    signature header for verification.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/usepylon
+- type: Website
+  url: https://usepylon.com/
+- type: Documentation
+  url: https://docs.usepylon.com/pylon-docs/developer/api
+- type: Plans
+  url: plans/pylon-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/pylon-rate-limits.yml
+- type: FinOps
+  url: finops/pylon-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

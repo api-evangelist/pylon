@@ -1,0 +1,154 @@
+aid: pylon
+name: Pylon
+review:
+  question: Does Pylon expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Pylon's public developer surface is a request/response REST API at
+    https://api.usepylon.com plus outbound webhooks. No WebSocket, SSE, or
+    other streaming transport is documented, so no AsyncAPI document was
+    authored. Webhooks are modeled descriptively in this review and in
+    apis.yml (pylon:pylon-webhooks-api) but are an outbound HTTP callback
+    mechanism, not a client-consumable streaming API.
+disambiguation:
+  subject: Pylon (usepylon.com)
+  summary: |
+    This catalog covers Pylon, the B2B customer support / customer operations
+    platform at usepylon.com (REST API at api.usepylon.com). It is NOT any of
+    the unrelated companies that share the "Pylon" name.
+  notToBeConfusedWith:
+    - name: Pylon (solar / residential energy)
+      note: Solar energy / residential power companies branded "Pylon"; unrelated to customer support.
+    - name: Pylon Network
+      note: Energy/blockchain "Pylon Network" project; unrelated.
+    - name: Basler pylon API
+      note: The "pylon" camera SDK/API from Basler (docs.baslerweb.com); machine-vision camera software, unrelated.
+    - name: Pylons project
+      note: The Python "Pylons" / Pyramid web framework; unrelated open-source project.
+    - name: getpylon.com
+      note: A separate developer hub also using a "pylon" name; not the usepylon.com support platform.
+findings:
+  summary: |
+    Pylon publishes a documented public REST API at https://api.usepylon.com,
+    authenticated with a Bearer API token that only Admin users can create.
+    An OpenAPI specification is published at
+    https://static.usepylon.com/openapi.json and the reference lives at
+    docs.usepylon.com. The API covers issues (tickets), accounts, contacts,
+    users, teams, tags, custom fields, the knowledge base (knowledge bases,
+    collections, articles, route redirects), and tasks/projects/milestones.
+    Real-time event delivery is provided through outbound webhooks configured
+    via Settings or Triggers, signed with an HS256 timestamped signature
+    header. No WebSocket (ws/wss) or SSE streaming API is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.usepylon.com
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound user-defined HTTP callbacks fired by Triggers; HS256-signed, timestamped. Not a client-consumable stream.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Pylon's developer docs as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming endpoint is documented.
+  endpointsConfirmedRest:
+    - GET  https://api.usepylon.com/me
+    - GET  https://api.usepylon.com/issues
+    - POST https://api.usepylon.com/issues
+    - GET  https://api.usepylon.com/issues/{id}
+    - PATCH https://api.usepylon.com/issues/{id}
+    - DELETE https://api.usepylon.com/issues/{id}
+    - POST https://api.usepylon.com/issues/search
+    - POST https://api.usepylon.com/issues/{id}/snooze
+    - GET  https://api.usepylon.com/issues/{id}/followers
+    - POST https://api.usepylon.com/issues/{id}/followers
+    - POST https://api.usepylon.com/issues/{id}/external-issues
+    - GET  https://api.usepylon.com/accounts
+    - POST https://api.usepylon.com/accounts
+    - PATCH https://api.usepylon.com/accounts
+    - GET  https://api.usepylon.com/accounts/{id}
+    - PATCH https://api.usepylon.com/accounts/{id}
+    - DELETE https://api.usepylon.com/accounts/{id}
+    - POST https://api.usepylon.com/accounts/search
+    - POST https://api.usepylon.com/accounts/merge
+    - GET  https://api.usepylon.com/contacts
+    - POST https://api.usepylon.com/contacts
+    - GET  https://api.usepylon.com/contacts/{id}
+    - PATCH https://api.usepylon.com/contacts/{id}
+    - DELETE https://api.usepylon.com/contacts/{id}
+    - POST https://api.usepylon.com/contacts/search
+    - GET  https://api.usepylon.com/users
+    - GET  https://api.usepylon.com/users/{id}
+    - PATCH https://api.usepylon.com/users/{id}
+    - POST https://api.usepylon.com/users/search
+    - GET  https://api.usepylon.com/teams
+    - POST https://api.usepylon.com/teams
+    - GET  https://api.usepylon.com/teams/{id}
+    - PATCH https://api.usepylon.com/teams/{id}
+    - GET  https://api.usepylon.com/tags
+    - POST https://api.usepylon.com/tags
+    - GET  https://api.usepylon.com/tags/{id}
+    - PATCH https://api.usepylon.com/tags/{id}
+    - DELETE https://api.usepylon.com/tags/{id}
+    - GET  https://api.usepylon.com/custom-fields
+    - POST https://api.usepylon.com/custom-fields
+    - GET  https://api.usepylon.com/custom-fields/{id}
+    - PATCH https://api.usepylon.com/custom-fields/{id}
+    - GET  https://api.usepylon.com/knowledge-bases
+    - GET  https://api.usepylon.com/knowledge-bases/{id}/collections
+    - POST https://api.usepylon.com/knowledge-bases/{id}/collections
+    - PATCH https://api.usepylon.com/knowledge-bases/{id}/collections/{collection_id}
+    - DELETE https://api.usepylon.com/knowledge-bases/{id}/collections/{collection_id}
+    - GET  https://api.usepylon.com/knowledge-bases/{id}/articles
+    - POST https://api.usepylon.com/knowledge-bases/{id}/articles
+    - GET  https://api.usepylon.com/knowledge-bases/{id}/articles/{article_id}
+    - PATCH https://api.usepylon.com/knowledge-bases/{id}/articles/{article_id}
+    - DELETE https://api.usepylon.com/knowledge-bases/{id}/articles/{article_id}
+    - POST https://api.usepylon.com/knowledge-bases/{id}/route-redirects
+    - GET  https://api.usepylon.com/tasks
+    - POST https://api.usepylon.com/tasks
+    - GET  https://api.usepylon.com/tasks/{id}
+    - PATCH https://api.usepylon.com/tasks/{id}
+    - DELETE https://api.usepylon.com/tasks/{id}
+    - POST https://api.usepylon.com/tasks/search
+    - POST https://api.usepylon.com/projects
+    - GET  https://api.usepylon.com/projects/{id}
+    - PATCH https://api.usepylon.com/projects/{id}
+    - DELETE https://api.usepylon.com/projects/{id}
+    - POST https://api.usepylon.com/projects/search
+    - POST https://api.usepylon.com/milestones
+    - GET  https://api.usepylon.com/milestones/{id}
+    - PATCH https://api.usepylon.com/milestones/{id}
+    - DELETE https://api.usepylon.com/milestones/{id}
+sources:
+  - url: https://docs.usepylon.com/pylon-docs/developer/api
+    type: Documentation
+    note: API overview; Bearer auth, Admin-created tokens.
+  - url: https://docs.usepylon.com/pylon-docs/developer/api/api-reference
+    type: APIReference
+    note: Full endpoint reference; all documented endpoints are HTTPS REST.
+  - url: https://static.usepylon.com/openapi.json
+    type: OpenAPI
+    note: Pylon's published OpenAPI specification.
+  - url: https://docs.usepylon.com/pylon-docs/developer/webhooks
+    type: Documentation
+    note: Webhooks fired by Triggers with HS256-signed timestamped signature header; not WebSocket.
+  - url: https://www.usepylon.com/pricing
+    type: Pricing
+    note: Public per-seat pricing (Starter/Professional/Enterprise) plus add-ons.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE streaming surface exists, so no AsyncAPI document was
+    created. The REST API and outbound webhook surface are catalogued in
+    apis.yml across eight sub-APIs, and the OpenAPI document at
+    openapi/pylon-openapi.yml models the documented REST endpoints.

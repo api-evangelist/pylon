@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pylon API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Issues", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List issues", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/issues?start_time=2026-06-01T00:00:00Z&end_time=2026-06-20T00:00:00Z" },
+          "docs": "Returns a paginated list of issues within a time range (max 30 days)."
+        },
+        {
+          "info": { "name": "Create an issue", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/issues", "body": { "type": "json", "data": "{\"title\":\"Login button not working\",\"body_html\":\"<p>Customer reports an issue.</p>\",\"account_id\":\"acc_123\"}" } },
+          "docs": "Create a new issue with a title and body."
+        },
+        {
+          "info": { "name": "Get an issue", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/issues/{id}" },
+          "docs": "Fetch a single issue by ID or number."
+        },
+        {
+          "info": { "name": "Update an issue", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://api.usepylon.com/issues/{id}", "body": { "type": "json", "data": "{\"state\":\"closed\"}" } },
+          "docs": "Update an existing issue (partial)."
+        },
+        {
+          "info": { "name": "Search issues", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/issues/search", "body": { "type": "json", "data": "{}" } },
+          "docs": "Search issues using filters and fuzzy text."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Accounts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List accounts", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/accounts" },
+          "docs": "Retrieve a paginated list of accounts."
+        },
+        {
+          "info": { "name": "Create an account", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/accounts", "body": { "type": "json", "data": "{\"name\":\"Acme Corp\",\"domains\":[\"acme.com\"]}" } },
+          "docs": "Create a new account."
+        },
+        {
+          "info": { "name": "Merge accounts", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/accounts/merge", "body": { "type": "json", "data": "{\"merge_into_account_id\":\"acc_1\",\"merge_account_ids\":[\"acc_2\"]}" } },
+          "docs": "Merge one or more accounts into a surviving account."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Contacts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List contacts", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/contacts" },
+          "docs": "Retrieve a list of contacts."
+        },
+        {
+          "info": { "name": "Create a contact", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/contacts", "body": { "type": "json", "data": "{\"name\":\"Jane Doe\",\"email\":\"jane@acme.com\"}" } },
+          "docs": "Create a new contact."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Users and Teams", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get the authenticated user", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/me" },
+          "docs": "Returns the user associated with the current API token."
+        },
+        {
+          "info": { "name": "List users", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/users" },
+          "docs": "Retrieve a list of users."
+        },
+        {
+          "info": { "name": "List teams", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/teams" },
+          "docs": "Retrieve a list of teams."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Knowledge Base", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List knowledge bases", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/knowledge-bases" },
+          "docs": "Retrieve all knowledge bases for the organization."
+        },
+        {
+          "info": { "name": "List articles", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/knowledge-bases/{id}/articles" },
+          "docs": "Retrieve paginated articles from a knowledge base."
+        },
+        {
+          "info": { "name": "Create an article", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/knowledge-bases/{id}/articles", "body": { "type": "json", "data": "{\"title\":\"How to reset your password\",\"body_html\":\"<p>Steps.</p>\"}" } },
+          "docs": "Create a new article."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tags and Custom Fields", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List tags", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/tags" },
+          "docs": "Retrieve a list of tags."
+        },
+        {
+          "info": { "name": "List custom fields", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/custom-fields" },
+          "docs": "Retrieve a list of custom field definitions."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tasks and Projects", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List tasks", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.usepylon.com/tasks" },
+          "docs": "Returns a paginated list of tasks for the organization."
+        },
+        {
+          "info": { "name": "Create a task", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.usepylon.com/tasks", "body": { "type": "json", "data": "{\"title\":\"Follow up with customer\"}" } },
+          "docs": "Create a new task with a title and optional metadata."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Pylon
+providerId: pylon
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Customer Support
+- Customer Operations
+- Ticketing
+- Knowledge Base
+- B2B
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Pylon REST API at https://api.usepylon.com is authenticated with a
+  Bearer API token (Admin-created) and enforces per-account rate limits.
+  Specific numeric request-per-minute or per-second values are not published
+  in the public developer docs and are not reconciled in this artifact. The
+  issues list endpoint additionally caps query windows to a maximum 30-day
+  range, and list endpoints are cursor-paginated.
+notes: >-
+  Confirm exact request rate ceilings, burst behavior, and any per-endpoint
+  limits with Pylon support or in the API reference during reconciliation.
+  Treat HTTP 429 as the throttling signal and honor Retry-After if present.
+sources:
+- https://docs.usepylon.com/pylon-docs/developer/api
+- https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues
+responseCodes:
+  throttled: 429
+limits:
+- name: Account API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account API request limit; numeric value not published publicly.
+- name: Issues Query Window
+  scope: endpoint
+  metric: time_range
+  limit: 30 days maximum
+  notes: GET /issues requires start_time and end_time within a 30-day window.
+- name: Bulk Account Operations
+  scope: endpoint
+  metric: accounts
+  limit: 1-100 per request
+  notes: PATCH /accounts and POST /accounts/merge accept 1-100 account IDs.
+policies:
+- name: Cursor Pagination
+  description: List endpoints return a cursor; iterate using the cursor and limit parameters.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on HTTP 429 and honor Retry-After when provided.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

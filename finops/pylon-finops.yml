@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Pylon
+providerId: pylon
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Customer Support
+- Customer Operations
+- Ticketing
+- Knowledge Base
+- B2B
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Pylon spend. Pylon bills primarily as a per-seat SaaS
+  subscription across Starter, Professional, and Enterprise tiers (monthly or
+  annual, with seat minimums). Add-ons layer on top - AI Assistants per seat,
+  AI Agents priced from a monthly base that scales with issue volume, and
+  Account Intelligence per customer account. The REST API does not introduce
+  separate per-call usage charges; API access is gated to the Professional
+  tier and above.
+notes: >-
+  Per-seat rates and add-on pricing are subject to change; verify against the
+  Pylon pricing page during reconciliation.
+sources:
+- https://www.usepylon.com/pricing
+- https://docs.usepylon.com/pylon-docs/developer/api
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Pylon
+serviceCategory: Customer Support and Operations
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Pylon
+  ServiceCategory: Customer Support and Operations
+  ProviderName: Pylon
+  PublisherName: Pylon
+  InvoiceIssuerName: Pylon
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: seats
+  description: Paid agent seats per plan tier, billed per seat per month (annual or monthly).
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: ai_assistant_seats
+  description: AI Assistants add-on seats billed per seat per month.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+- name: ai_agent_issues
+  description: AI Agents add-on billed from a monthly base that scales with resolved issue volume.
+  unit: issues
+  aggregation: sum
+  dimensions:
+  - account
+- name: intelligence_accounts
+  description: Account Intelligence add-on billed per monitored customer account per month.
+  unit: accounts
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track active vs. assigned seats per plan tier; review add-on consumption (AI Agents issue volume, Account Intelligence account count) monthly.
+- name: Allocation
+  description: Map seats and add-ons to teams/cost centers; tag API tokens per integration to attribute automation-driven activity.
+- name: Optimization
+  description: Right-size seat counts and view-only seats; choose the tier that just covers required features (API requires Professional+); reassess AI add-ons against realized deflection.
+- name: Accountability
+  description: Assign an owner for the Pylon subscription; review seat growth and add-on spend against budget each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

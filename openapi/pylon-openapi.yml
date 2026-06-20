@@ -1,0 +1,1783 @@
+openapi: 3.0.1
+info:
+  title: Pylon API
+  description: >-
+    REST API for Pylon (usepylon.com), the B2B customer support and customer
+    operations platform. Programmatically manage issues (tickets), accounts,
+    contacts, users, teams, tags, custom fields, the knowledge base, and
+    tasks/projects. Authentication uses a Bearer API token; only Admin users
+    can create API tokens in Pylon settings.
+  termsOfService: https://usepylon.com/terms
+  contact:
+    name: Pylon Support
+    url: https://docs.usepylon.com/pylon-docs/developer/api
+  version: '1.0'
+servers:
+  - url: https://api.usepylon.com
+    description: Pylon production API
+security:
+  - bearerAuth: []
+tags:
+  - name: Issues
+    description: Support issues (tickets).
+  - name: Accounts
+    description: Customer accounts.
+  - name: Contacts
+    description: Individual contacts (end customers).
+  - name: Users
+    description: Internal Pylon users (agents).
+  - name: Teams
+    description: Support teams.
+  - name: Tags
+    description: Tags used across issues, accounts, and contacts.
+  - name: Custom Fields
+    description: Custom field definitions.
+  - name: Knowledge Base
+    description: Knowledge bases, collections, and articles.
+  - name: Tasks
+    description: Tasks, projects, and milestones.
+paths:
+  /me:
+    get:
+      operationId: getMe
+      tags:
+        - Users
+      summary: Get the authenticated user
+      description: Returns the user associated with the current API token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+  /issues:
+    get:
+      operationId: listIssues
+      tags:
+        - Issues
+      summary: List issues
+      description: >-
+        Returns a paginated list of issues within a time range. The window
+        between start_time and end_time may not exceed 30 days.
+      parameters:
+        - name: start_time
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_time
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+    post:
+      operationId: createIssue
+      tags:
+        - Issues
+      summary: Create an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIssueRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+  /issues/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getIssue
+      tags:
+        - Issues
+      summary: Get an issue
+      description: Fetch a single issue by ID or number.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+    patch:
+      operationId: updateIssue
+      tags:
+        - Issues
+      summary: Update an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIssueRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+    delete:
+      operationId: deleteIssue
+      tags:
+        - Issues
+      summary: Delete an issue
+      responses:
+        '200':
+          description: OK
+  /issues/search:
+    post:
+      operationId: searchIssues
+      tags:
+        - Issues
+      summary: Search issues
+      description: Search issues using structured filters and fuzzy text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+  /issues/{id}/snooze:
+    post:
+      operationId: snoozeIssue
+      tags:
+        - Issues
+      summary: Snooze an issue
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snooze_until_time:
+                  type: string
+                  format: date-time
+              required:
+                - snooze_until_time
+      responses:
+        '200':
+          description: OK
+  /issues/{id}/followers:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listIssueFollowers
+      tags:
+        - Issues
+      summary: List issue followers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+    post:
+      operationId: updateIssueFollowers
+      tags:
+        - Issues
+      summary: Add or remove issue followers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                add_follower_ids:
+                  type: array
+                  items:
+                    type: string
+                remove_follower_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+  /issues/{id}/external-issues:
+    post:
+      operationId: linkExternalIssues
+      tags:
+        - Issues
+      summary: Link or unlink external issues
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ExternalIssue'
+                unlink:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+  /accounts:
+    get:
+      operationId: listAccounts
+      tags:
+        - Accounts
+      summary: List accounts
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+    post:
+      operationId: createAccount
+      tags:
+        - Accounts
+      summary: Create an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    patch:
+      operationId: updateAccounts
+      tags:
+        - Accounts
+      summary: Update multiple accounts
+      description: Updates 1-100 accounts in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_ids:
+                  type: array
+                  items:
+                    type: string
+                account_type:
+                  type: string
+                owner_id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                tags_apply_mode:
+                  type: string
+                custom_fields:
+                  type: object
+                  additionalProperties: true
+              required:
+                - account_ids
+      responses:
+        '200':
+          description: OK
+  /accounts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getAccount
+      tags:
+        - Accounts
+      summary: Get an account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    patch:
+      operationId: updateAccount
+      tags:
+        - Accounts
+      summary: Update an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    delete:
+      operationId: deleteAccount
+      tags:
+        - Accounts
+      summary: Delete an account
+      responses:
+        '200':
+          description: OK
+  /accounts/search:
+    post:
+      operationId: searchAccounts
+      tags:
+        - Accounts
+      summary: Search accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+  /accounts/merge:
+    post:
+      operationId: mergeAccounts
+      tags:
+        - Accounts
+      summary: Merge accounts
+      description: Merges 1-100 accounts into a surviving account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merge_into_account_id:
+                  type: string
+                merge_account_ids:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - merge_into_account_id
+                - merge_account_ids
+      responses:
+        '200':
+          description: OK
+  /contacts:
+    get:
+      operationId: listContacts
+      tags:
+        - Contacts
+      summary: List contacts
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListResponse'
+    post:
+      operationId: createContact
+      tags:
+        - Contacts
+      summary: Create a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+  /contacts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getContact
+      tags:
+        - Contacts
+      summary: Get a contact
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+    patch:
+      operationId: updateContact
+      tags:
+        - Contacts
+      summary: Update a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+    delete:
+      operationId: deleteContact
+      tags:
+        - Contacts
+      summary: Delete a contact
+      responses:
+        '200':
+          description: OK
+  /contacts/search:
+    post:
+      operationId: searchContacts
+      tags:
+        - Contacts
+      summary: Search contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListResponse'
+  /users:
+    get:
+      operationId: listUsers
+      tags:
+        - Users
+      summary: List users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getUser
+      tags:
+        - Users
+      summary: Get a user
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+    patch:
+      operationId: updateUser
+      tags:
+        - Users
+      summary: Update a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role_id:
+                  type: string
+                status:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+  /users/search:
+    post:
+      operationId: searchUsers
+      tags:
+        - Users
+      summary: Search users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+  /teams:
+    get:
+      operationId: listTeams
+      tags:
+        - Teams
+      summary: List teams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+    post:
+      operationId: createTeam
+      tags:
+        - Teams
+      summary: Create a team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+  /teams/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getTeam
+      tags:
+        - Teams
+      summary: Get a team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+    patch:
+      operationId: updateTeam
+      tags:
+        - Teams
+      summary: Update a team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+  /tags:
+    get:
+      operationId: listTags
+      tags:
+        - Tags
+      summary: List tags
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Tag'
+    post:
+      operationId: createTag
+      tags:
+        - Tags
+      summary: Create a tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTagRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
+  /tags/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getTag
+      tags:
+        - Tags
+      summary: Get a tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
+    patch:
+      operationId: updateTag
+      tags:
+        - Tags
+      summary: Update a tag
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTagRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
+    delete:
+      operationId: deleteTag
+      tags:
+        - Tags
+      summary: Delete a tag
+      responses:
+        '200':
+          description: OK
+  /custom-fields:
+    get:
+      operationId: listCustomFields
+      tags:
+        - Custom Fields
+      summary: List custom fields
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomField'
+    post:
+      operationId: createCustomField
+      tags:
+        - Custom Fields
+      summary: Create a custom field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomField'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldResponse'
+  /custom-fields/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getCustomField
+      tags:
+        - Custom Fields
+      summary: Get a custom field
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldResponse'
+    patch:
+      operationId: updateCustomField
+      tags:
+        - Custom Fields
+      summary: Update a custom field
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomField'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldResponse'
+  /knowledge-bases:
+    get:
+      operationId: listKnowledgeBases
+      tags:
+        - Knowledge Base
+      summary: List knowledge bases
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/KnowledgeBase'
+  /knowledge-bases/{id}/collections:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listCollections
+      tags:
+        - Knowledge Base
+      summary: List collections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Collection'
+    post:
+      operationId: createCollection
+      tags:
+        - Knowledge Base
+      summary: Create a collection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Collection'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /knowledge-bases/{id}/collections/{collection_id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: collection_id
+        in: path
+        required: true
+        schema:
+          type: string
+    patch:
+      operationId: updateCollection
+      tags:
+        - Knowledge Base
+      summary: Update a collection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Collection'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteCollection
+      tags:
+        - Knowledge Base
+      summary: Delete a collection
+      responses:
+        '200':
+          description: OK
+  /knowledge-bases/{id}/articles:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: listArticles
+      tags:
+        - Knowledge Base
+      summary: List articles
+      parameters:
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Article'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+    post:
+      operationId: createArticle
+      tags:
+        - Knowledge Base
+      summary: Create an article
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+  /knowledge-bases/{id}/articles/{article_id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: article_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getArticle
+      tags:
+        - Knowledge Base
+      summary: Get an article
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+    patch:
+      operationId: updateArticle
+      tags:
+        - Knowledge Base
+      summary: Update an article
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteArticle
+      tags:
+        - Knowledge Base
+      summary: Delete an article
+      responses:
+        '200':
+          description: OK
+  /knowledge-bases/{id}/route-redirects:
+    post:
+      operationId: createRouteRedirect
+      tags:
+        - Knowledge Base
+      summary: Create a route redirect
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                from_path:
+                  type: string
+                to_path:
+                  type: string
+      responses:
+        '200':
+          description: OK
+  /tasks:
+    get:
+      operationId: listTasks
+      tags:
+        - Tasks
+      summary: List tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+    post:
+      operationId: createTask
+      tags:
+        - Tasks
+      summary: Create a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /tasks/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getTask
+      tags:
+        - Tasks
+      summary: Get a task
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    patch:
+      operationId: updateTask
+      tags:
+        - Tasks
+      summary: Update a task
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteTask
+      tags:
+        - Tasks
+      summary: Delete a task
+      responses:
+        '200':
+          description: OK
+  /tasks/search:
+    post:
+      operationId: searchTasks
+      tags:
+        - Tasks
+      summary: Search tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+  /projects:
+    post:
+      operationId: createProject
+      tags:
+        - Tasks
+      summary: Create a project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getProject
+      tags:
+        - Tasks
+      summary: Get a project
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    patch:
+      operationId: updateProject
+      tags:
+        - Tasks
+      summary: Update a project
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteProject
+      tags:
+        - Tasks
+      summary: Delete a project
+      responses:
+        '200':
+          description: OK
+  /projects/search:
+    post:
+      operationId: searchProjects
+      tags:
+        - Tasks
+      summary: Search projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+  /milestones:
+    post:
+      operationId: createMilestone
+      tags:
+        - Tasks
+      summary: Create a milestone
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Milestone'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+  /milestones/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      operationId: getMilestone
+      tags:
+        - Tasks
+      summary: Get a milestone
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Milestone'
+    patch:
+      operationId: updateMilestone
+      tags:
+        - Tasks
+      summary: Update a milestone
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Milestone'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteMilestone
+      tags:
+        - Tasks
+      summary: Delete a milestone
+      responses:
+        '200':
+          description: OK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Pylon API token passed as a Bearer token in the Authorization header.
+        Only Admin users can create API tokens in Pylon settings.
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    ExternalIssue:
+      type: object
+      properties:
+        external_id:
+          type: string
+        link:
+          type: string
+        source:
+          type: string
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+        title:
+          type: string
+        body_html:
+          type: string
+        state:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account:
+          $ref: '#/components/schemas/NamedRef'
+        requester:
+          $ref: '#/components/schemas/NamedRef'
+        assignee:
+          $ref: '#/components/schemas/NamedRef'
+        team:
+          $ref: '#/components/schemas/NamedRef'
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        attachment_urls:
+          type: array
+          items:
+            type: string
+        external_issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalIssue'
+        first_response_time:
+          type: string
+          format: date-time
+        resolution_time:
+          type: string
+          format: date-time
+        snoozed_until_time:
+          type: string
+          format: date-time
+    CreateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        body_html:
+          type: string
+        account_id:
+          type: string
+        requester_id:
+          type: string
+        contact_id:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        state:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        destination_metadata:
+          type: object
+          additionalProperties: true
+      required:
+        - title
+    UpdateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        state:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+    IssueResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Issue'
+    IssueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        domain:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/NamedRef'
+        channels:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        custom_fields:
+          type: object
+          additionalProperties: true
+        external_ids:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        is_disabled:
+          type: boolean
+        latest_customer_activity_time:
+          type: string
+          format: date-time
+    CreateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        owner_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+        - name
+    AccountResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Account'
+    AccountListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Contact:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        account_id:
+          type: string
+        avatar_url:
+          type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    CreateContactRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        account_id:
+          type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+        - email
+    ContactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contact'
+    ContactListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        avatar_url:
+          type: string
+        role_id:
+          type: string
+        status:
+          type: string
+    UserResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/User'
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedRef'
+    CreateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        user_ids:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    TeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+        value:
+          type: string
+        hex_color:
+          type: string
+        object_type:
+          type: string
+    CreateTagRequest:
+      type: object
+      properties:
+        value:
+          type: string
+        hex_color:
+          type: string
+        object_type:
+          type: string
+      required:
+        - value
+    TagResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Tag'
+    CustomField:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        label:
+          type: string
+        type:
+          type: string
+        object_type:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+    CustomFieldResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomField'
+    KnowledgeBase:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+    Collection:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        parent_collection_id:
+          type: string
+    Article:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        body_html:
+          type: string
+        collection_id:
+          type: string
+        published:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        account_id:
+          type: string
+        project_id:
+          type: string
+        assignee_id:
+          type: string
+        due_date:
+          type: string
+          format: date-time
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        account_id:
+          type: string
+        status:
+          type: string
+    Milestone:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        project_id:
+          type: string
+        due_date:
+          type: string
+          format: date-time
