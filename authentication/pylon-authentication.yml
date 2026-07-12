@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/pylon-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Pylon API token passed as a Bearer token in the Authorization header. Only Admin
+    users can create API tokens in Pylon settings.
+  sources:
+  - openapi/pylon-openapi.yml

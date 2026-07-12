@@ -185,6 +185,12 @@ apis:
     (such as issue created or updated). Each delivery carries an HS256-signed timestamped
     signature header for verification.
 common:
+- type: TrustCenter
+  url: security/pylon-trust-center.yml
+- type: DomainSecurity
+  url: security/pylon-domain-security.yml
+- type: Authentication
+  url: authentication/pylon-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/usepylon
 - type: Website
@@ -197,6 +203,8 @@ common:
   url: rate-limits/pylon-rate-limits.yml
 - type: FinOps
   url: finops/pylon-finops.yml
+- type: Blog
+  url: https://usepylon.com/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
