@@ -185,6 +185,8 @@ apis:
     (such as issue created or updated). Each delivery carries an HS256-signed timestamped
     signature header for verification.
 common:
+- type: AgenticAccess
+  url: agentic-access/pylon-agentic-access.yml
 - type: TrustCenter
   url: security/pylon-trust-center.yml
 - type: DomainSecurity
