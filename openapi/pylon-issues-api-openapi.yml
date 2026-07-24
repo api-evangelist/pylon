@@ -1,0 +1,415 @@
+openapi: 3.0.1
+info:
+  title: Pylon Accounts Issues API
+  description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
+  termsOfService: https://usepylon.com/terms
+  contact:
+    name: Pylon Support
+    url: https://docs.usepylon.com/pylon-docs/developer/api
+  version: '1.0'
+servers:
+- url: https://api.usepylon.com
+  description: Pylon production API
+security:
+- bearerAuth: []
+tags:
+- name: Issues
+  description: Support issues (tickets).
+paths:
+  /issues:
+    get:
+      operationId: listIssues
+      tags:
+      - Issues
+      summary: List issues
+      description: Returns a paginated list of issues within a time range. The window between start_time and end_time may not exceed 30 days.
+      parameters:
+      - name: start_time
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: end_time
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+    post:
+      operationId: createIssue
+      tags:
+      - Issues
+      summary: Create an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIssueRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+  /issues/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getIssue
+      tags:
+      - Issues
+      summary: Get an issue
+      description: Fetch a single issue by ID or number.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+    patch:
+      operationId: updateIssue
+      tags:
+      - Issues
+      summary: Update an issue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIssueRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueResponse'
+    delete:
+      operationId: deleteIssue
+      tags:
+      - Issues
+      summary: Delete an issue
+      responses:
+        '200':
+          description: OK
+  /issues/search:
+    post:
+      operationId: searchIssues
+      tags:
+      - Issues
+      summary: Search issues
+      description: Search issues using structured filters and fuzzy text.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueListResponse'
+  /issues/{id}/snooze:
+    post:
+      operationId: snoozeIssue
+      tags:
+      - Issues
+      summary: Snooze an issue
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snooze_until_time:
+                  type: string
+                  format: date-time
+              required:
+              - snooze_until_time
+      responses:
+        '200':
+          description: OK
+  /issues/{id}/followers:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: listIssueFollowers
+      tags:
+      - Issues
+      summary: List issue followers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+    post:
+      operationId: updateIssueFollowers
+      tags:
+      - Issues
+      summary: Add or remove issue followers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                add_follower_ids:
+                  type: array
+                  items:
+                    type: string
+                remove_follower_ids:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+  /issues/{id}/external-issues:
+    post:
+      operationId: linkExternalIssues
+      tags:
+      - Issues
+      summary: Link or unlink external issues
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ExternalIssue'
+                unlink:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    ExternalIssue:
+      type: object
+      properties:
+        external_id:
+          type: string
+        link:
+          type: string
+        source:
+          type: string
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+        title:
+          type: string
+        body_html:
+          type: string
+        state:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account:
+          $ref: '#/components/schemas/NamedRef'
+        requester:
+          $ref: '#/components/schemas/NamedRef'
+        assignee:
+          $ref: '#/components/schemas/NamedRef'
+        team:
+          $ref: '#/components/schemas/NamedRef'
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        attachment_urls:
+          type: array
+          items:
+            type: string
+        external_issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalIssue'
+        first_response_time:
+          type: string
+          format: date-time
+        resolution_time:
+          type: string
+          format: date-time
+        snoozed_until_time:
+          type: string
+          format: date-time
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
+    IssueListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    CreateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        body_html:
+          type: string
+        account_id:
+          type: string
+        requester_id:
+          type: string
+        contact_id:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        state:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        destination_metadata:
+          type: object
+          additionalProperties: true
+      required:
+      - title
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        avatar_url:
+          type: string
+        role_id:
+          type: string
+        status:
+          type: string
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    IssueResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Issue'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    UpdateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        state:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pylon API token passed as a Bearer token in the Authorization header. Only Admin users can create API tokens in Pylon settings.

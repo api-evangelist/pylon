@@ -1,0 +1,199 @@
+openapi: 3.0.1
+info:
+  title: Pylon Accounts Contacts API
+  description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
+  termsOfService: https://usepylon.com/terms
+  contact:
+    name: Pylon Support
+    url: https://docs.usepylon.com/pylon-docs/developer/api
+  version: '1.0'
+servers:
+- url: https://api.usepylon.com
+  description: Pylon production API
+security:
+- bearerAuth: []
+tags:
+- name: Contacts
+  description: Individual contacts (end customers).
+paths:
+  /contacts:
+    get:
+      operationId: listContacts
+      tags:
+      - Contacts
+      summary: List contacts
+      parameters:
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListResponse'
+    post:
+      operationId: createContact
+      tags:
+      - Contacts
+      summary: Create a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+  /contacts/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getContact
+      tags:
+      - Contacts
+      summary: Get a contact
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+    patch:
+      operationId: updateContact
+      tags:
+      - Contacts
+      summary: Update a contact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+    delete:
+      operationId: deleteContact
+      tags:
+      - Contacts
+      summary: Delete a contact
+      responses:
+        '200':
+          description: OK
+  /contacts/search:
+    post:
+      operationId: searchContacts
+      tags:
+      - Contacts
+      summary: Search contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactListResponse'
+components:
+  schemas:
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
+    ContactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contact'
+    CreateContactRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        account_id:
+          type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+      - email
+    ContactListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    Contact:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        account_id:
+          type: string
+        avatar_url:
+          type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pylon API token passed as a Bearer token in the Authorization header. Only Admin users can create API tokens in Pylon settings.

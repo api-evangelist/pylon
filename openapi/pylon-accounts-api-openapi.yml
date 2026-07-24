@@ -1,0 +1,295 @@
+openapi: 3.0.1
+info:
+  title: Pylon Accounts API
+  description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
+  termsOfService: https://usepylon.com/terms
+  contact:
+    name: Pylon Support
+    url: https://docs.usepylon.com/pylon-docs/developer/api
+  version: '1.0'
+servers:
+- url: https://api.usepylon.com
+  description: Pylon production API
+security:
+- bearerAuth: []
+tags:
+- name: Accounts
+  description: Customer accounts.
+paths:
+  /accounts:
+    get:
+      operationId: listAccounts
+      tags:
+      - Accounts
+      summary: List accounts
+      parameters:
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+    post:
+      operationId: createAccount
+      tags:
+      - Accounts
+      summary: Create an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    patch:
+      operationId: updateAccounts
+      tags:
+      - Accounts
+      summary: Update multiple accounts
+      description: Updates 1-100 accounts in a single request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_ids:
+                  type: array
+                  items:
+                    type: string
+                account_type:
+                  type: string
+                owner_id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                tags_apply_mode:
+                  type: string
+                custom_fields:
+                  type: object
+                  additionalProperties: true
+              required:
+              - account_ids
+      responses:
+        '200':
+          description: OK
+  /accounts/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getAccount
+      tags:
+      - Accounts
+      summary: Get an account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    patch:
+      operationId: updateAccount
+      tags:
+      - Accounts
+      summary: Update an account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+    delete:
+      operationId: deleteAccount
+      tags:
+      - Accounts
+      summary: Delete an account
+      responses:
+        '200':
+          description: OK
+  /accounts/search:
+    post:
+      operationId: searchAccounts
+      tags:
+      - Accounts
+      summary: Search accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+  /accounts/merge:
+    post:
+      operationId: mergeAccounts
+      tags:
+      - Accounts
+      summary: Merge accounts
+      description: Merges 1-100 accounts into a surviving account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merge_into_account_id:
+                  type: string
+                merge_account_ids:
+                  type: array
+                  items:
+                    type: string
+              required:
+              - merge_into_account_id
+              - merge_account_ids
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    CreateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        owner_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+      - name
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        domain:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/NamedRef'
+        channels:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        custom_fields:
+          type: object
+          additionalProperties: true
+        external_ids:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        is_disabled:
+          type: boolean
+        latest_customer_activity_time:
+          type: string
+          format: date-time
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    AccountResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Account'
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    AccountListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pylon API token passed as a Bearer token in the Authorization header. Only Admin users can create API tokens in Pylon settings.

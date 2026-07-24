@@ -1,0 +1,130 @@
+openapi: 3.0.1
+info:
+  title: Pylon Accounts Teams API
+  description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
+  termsOfService: https://usepylon.com/terms
+  contact:
+    name: Pylon Support
+    url: https://docs.usepylon.com/pylon-docs/developer/api
+  version: '1.0'
+servers:
+- url: https://api.usepylon.com
+  description: Pylon production API
+security:
+- bearerAuth: []
+tags:
+- name: Teams
+  description: Support teams.
+paths:
+  /teams:
+    get:
+      operationId: listTeams
+      tags:
+      - Teams
+      summary: List teams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Team'
+    post:
+      operationId: createTeam
+      tags:
+      - Teams
+      summary: Create a team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+  /teams/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getTeam
+      tags:
+      - Teams
+      summary: Get a team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+    patch:
+      operationId: updateTeam
+      tags:
+      - Teams
+      summary: Update a team
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+components:
+  schemas:
+    TeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedRef'
+    CreateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        user_ids:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Pylon API token passed as a Bearer token in the Authorization header. Only Admin users can create API tokens in Pylon settings.
