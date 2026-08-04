@@ -1,0 +1,30 @@
+{
+  "provider": "pylon",
+  "sources": [
+    "pylon-accounts-api-openapi.yml",
+    "pylon-contacts-api-openapi.yml",
+    "pylon-custom-fields-api-openapi.yml",
+    "pylon-issues-api-openapi.yml",
+    "pylon-knowledge-base-api-openapi.yml",
+    "pylon-tags-api-openapi.yml",
+    "pylon-tasks-api-openapi.yml",
+    "pylon-teams-api-openapi.yml",
+    "pylon-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "pylon-accounts-api-openapi.yml",
+    "pylon-contacts-api-openapi.yml",
+    "pylon-custom-fields-api-openapi.yml",
+    "pylon-issues-api-openapi.yml",
+    "pylon-knowledge-base-api-openapi.yml",
+    "pylon-tags-api-openapi.yml",
+    "pylon-tasks-api-openapi.yml",
+    "pylon-teams-api-openapi.yml",
+    "pylon-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
