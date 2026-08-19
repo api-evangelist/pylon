@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pylon Accounts Knowledge Base API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Knowledge Base",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List knowledge bases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/knowledge-bases"
+          },
+          "docs": "List knowledge bases"
+        },
+        {
+          "info": {
+            "name": "List collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/collections",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List collections"
+        },
+        {
+          "info": {
+            "name": "Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/collections",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a collection"
+        },
+        {
+          "info": {
+            "name": "Update a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/collections/:collection_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a collection"
+        },
+        {
+          "info": {
+            "name": "Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/collections/:collection_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "collection_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a collection"
+        },
+        {
+          "info": {
+            "name": "List articles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/articles",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List articles"
+        },
+        {
+          "info": {
+            "name": "Create an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/articles",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an article"
+        },
+        {
+          "info": {
+            "name": "Get an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/articles/:article_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an article"
+        },
+        {
+          "info": {
+            "name": "Update an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/articles/:article_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an article"
+        },
+        {
+          "info": {
+            "name": "Delete an article",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/articles/:article_id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "article_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an article"
+        },
+        {
+          "info": {
+            "name": "Create a route redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/knowledge-bases/:id/route-redirects",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a route redirect"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

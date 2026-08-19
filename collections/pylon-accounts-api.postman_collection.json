@@ -1,0 +1,804 @@
+{
+  "item": [
+    {
+      "id": "508b47a8-ad29-48f6-813e-48a0d85043f9",
+      "name": "Accounts",
+      "description": {
+        "content": "Customer accounts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e89184b-7a51-47ea-9b1a-0077dd6e7e9f",
+          "name": "List accounts",
+          "request": {
+            "name": "List accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61070208-bdc5-45d1-953f-32f809b38df9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"domain\": \"string\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"2010-06-13T23:20:33.179Z\",\n      \"updated_at\": \"1958-04-12T12:10:43.572Z\",\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"channels\": [\n        {\n          \"key_0\": 9786.729392363279,\n          \"key_1\": \"string\",\n          \"key_2\": 7016.845904209251\n        },\n        {\n          \"key_0\": 257,\n          \"key_1\": 3575.274560027836\n        }\n      ],\n      \"custom_fields\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": 8613.973432113926,\n        \"key_3\": 4851.102024118256,\n        \"key_4\": false\n      },\n      \"external_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_disabled\": true,\n      \"latest_customer_activity_time\": \"1953-11-16T06:45:10.115Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"domain\": \"string\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"1968-06-02T15:22:53.256Z\",\n      \"updated_at\": \"2000-06-26T01:19:59.660Z\",\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"channels\": [\n        {\n          \"key_0\": 7894.76148953466,\n          \"key_1\": 8418.011003545564,\n          \"key_2\": true,\n          \"key_3\": 8413.65258081316\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      ],\n      \"custom_fields\": {\n        \"key_0\": false,\n        \"key_1\": \"string\"\n      },\n      \"external_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_disabled\": true,\n      \"latest_customer_activity_time\": \"1965-04-29T20:52:20.789Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93f607f5-82e7-4005-9f6a-1dd63f9f24a5",
+          "name": "Create an account",
+          "request": {
+            "name": "Create an account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": 7227,\n    \"key_1\": false,\n    \"key_2\": false,\n    \"key_3\": false\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25ff83a5-7d20-4752-a1d6-38f397bce41f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": 1800,\n    \"key_1\": 2162.8368581584655\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"domain\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1949-08-20T13:29:15.762Z\",\n    \"updated_at\": \"2022-02-07T04:33:25.480Z\",\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"channels\": [\n      {\n        \"key_0\": 1429\n      },\n      {\n        \"key_0\": 1561.5816976862984,\n        \"key_1\": 9017.439065199673,\n        \"key_2\": false\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"external_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_disabled\": false,\n    \"latest_customer_activity_time\": \"1957-03-30T17:16:00.807Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f6015c9-f6b5-4ded-92e5-5f4353fafa87",
+          "name": "Update multiple accounts",
+          "request": {
+            "name": "Update multiple accounts",
+            "description": {
+              "content": "Updates 1-100 accounts in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"account_type\": \"<string>\",\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags_apply_mode\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9519f3be-abb5-41e4-8080-483706f70887",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"account_type\": \"<string>\",\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags_apply_mode\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": true,\n    \"key_1\": 8262\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "025fe770-d85b-4676-bf3a-2a474e2aea31",
+          "name": "Get an account",
+          "request": {
+            "name": "Get an account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "274b9ef4-5c60-467a-806d-163370c99755",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"domain\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1949-08-20T13:29:15.762Z\",\n    \"updated_at\": \"2022-02-07T04:33:25.480Z\",\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"channels\": [\n      {\n        \"key_0\": 1429\n      },\n      {\n        \"key_0\": 1561.5816976862984,\n        \"key_1\": 9017.439065199673,\n        \"key_2\": false\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"external_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_disabled\": false,\n    \"latest_customer_activity_time\": \"1957-03-30T17:16:00.807Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "808487d6-b1b4-4cc8-94fc-cf293a46212e",
+          "name": "Update an account",
+          "request": {
+            "name": "Update an account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": \"string\",\n    \"key_1\": 2641,\n    \"key_2\": \"string\",\n    \"key_3\": 1020.4675601597702\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3479e3c7-4ff4-4ecf-b69a-082298c4b5b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"owner_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": 1800,\n    \"key_1\": 2162.8368581584655\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"type\": \"string\",\n    \"domain\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1949-08-20T13:29:15.762Z\",\n    \"updated_at\": \"2022-02-07T04:33:25.480Z\",\n    \"owner\": {\n      \"id\": \"string\"\n    },\n    \"channels\": [\n      {\n        \"key_0\": 1429\n      },\n      {\n        \"key_0\": 1561.5816976862984,\n        \"key_1\": 9017.439065199673,\n        \"key_2\": false\n      }\n    ],\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"external_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"is_disabled\": false,\n    \"latest_customer_activity_time\": \"1957-03-30T17:16:00.807Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d97f001-3b24-4c92-9d3e-34c76890ca40",
+          "name": "Delete an account",
+          "request": {
+            "name": "Delete an account",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8bf4035-a7fa-462f-a4d3-4aa654990d54",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6e251c3-5b76-402c-b448-18f455e7f046",
+          "name": "Search accounts",
+          "request": {
+            "name": "Search accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"key_0\": 6732,\n    \"key_1\": true,\n    \"key_2\": 7427,\n    \"key_3\": 2000\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "564dd680-d075-43dc-ab26-90fbf7a35f06",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"key_0\": true,\n    \"key_1\": 1989,\n    \"key_2\": true\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"domain\": \"string\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"2006-03-31T22:39:12.331Z\",\n      \"updated_at\": \"2017-06-13T18:18:08.156Z\",\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"channels\": [\n        {\n          \"key_0\": true\n        },\n        {\n          \"key_0\": 9252.302394699838,\n          \"key_1\": 3725,\n          \"key_2\": 5835\n        }\n      ],\n      \"custom_fields\": {\n        \"key_0\": \"string\"\n      },\n      \"external_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_disabled\": true,\n      \"latest_customer_activity_time\": \"2009-09-09T09:16:58.425Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"domain\": \"string\",\n      \"domains\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"1963-03-07T02:05:42.183Z\",\n      \"updated_at\": \"1965-12-06T19:43:35.183Z\",\n      \"owner\": {\n        \"id\": \"string\"\n      },\n      \"channels\": [\n        {\n          \"key_0\": 4240.7429524583295,\n          \"key_1\": 3353\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ],\n      \"custom_fields\": {\n        \"key_0\": false,\n        \"key_1\": \"string\",\n        \"key_2\": 5084.578930132757,\n        \"key_3\": \"string\"\n      },\n      \"external_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"is_disabled\": false,\n      \"latest_customer_activity_time\": \"1948-08-12T21:52:07.599Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bd8bef4-a037-4e6f-b7b4-60e838dccd47",
+          "name": "Merge accounts",
+          "request": {
+            "name": "Merge accounts",
+            "description": {
+              "content": "Merges 1-100 accounts into a surviving account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merge_into_account_id\": \"<string>\",\n  \"merge_account_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad66fffa-87ad-47cd-a613-4539c52448af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merge_into_account_id\": \"<string>\",\n  \"merge_account_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usepylon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f70bade6-62bf-465c-888b-eeef854865cd",
+    "name": "Pylon Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.\n\nContact Support:\n Name: Pylon Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Pylon Accounts Tasks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/tasks"
+          },
+          "docs": "List tasks"
+        },
+        {
+          "info": {
+            "name": "Create a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a task"
+        },
+        {
+          "info": {
+            "name": "Get a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a task"
+        },
+        {
+          "info": {
+            "name": "Update a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usepylon.com/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a task"
+        },
+        {
+          "info": {
+            "name": "Delete a task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usepylon.com/tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a task"
+        },
+        {
+          "info": {
+            "name": "Search tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/tasks/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search tasks"
+        },
+        {
+          "info": {
+            "name": "Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a project"
+        },
+        {
+          "info": {
+            "name": "Get a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a project"
+        },
+        {
+          "info": {
+            "name": "Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usepylon.com/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project"
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usepylon.com/projects/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a project"
+        },
+        {
+          "info": {
+            "name": "Search projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/projects/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search projects"
+        },
+        {
+          "info": {
+            "name": "Create a milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usepylon.com/milestones",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a milestone"
+        },
+        {
+          "info": {
+            "name": "Get a milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usepylon.com/milestones/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a milestone"
+        },
+        {
+          "info": {
+            "name": "Update a milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.usepylon.com/milestones/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a milestone"
+        },
+        {
+          "info": {
+            "name": "Delete a milestone",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.usepylon.com/milestones/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a milestone"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

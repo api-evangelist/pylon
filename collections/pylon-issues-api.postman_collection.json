@@ -1,0 +1,1068 @@
+{
+  "item": [
+    {
+      "id": "30d659cf-73fc-4ab1-b78f-cab9f607a18c",
+      "name": "Issues",
+      "description": {
+        "content": "Support issues (tickets).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a6db6ef-413c-44fd-af0c-4e4f02f4cedc",
+          "name": "List issues",
+          "request": {
+            "name": "List issues",
+            "description": {
+              "content": "Returns a paginated list of issues within a time range. The window between start_time and end_time may not exceed 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49669716-1a40-4a94-8882-77002764d00a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"number\": 1361,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"state\": \"string\",\n      \"created_at\": \"1991-08-23T09:03:24.948Z\",\n      \"updated_at\": \"2009-06-15T14:12:22.749Z\",\n      \"account\": {\n        \"id\": \"string\"\n      },\n      \"requester\": {\n        \"id\": \"string\"\n      },\n      \"assignee\": {\n        \"id\": \"string\"\n      },\n      \"team\": {\n        \"id\": \"string\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": {\n        \"key_0\": false,\n        \"key_1\": false,\n        \"key_2\": 2269\n      },\n      \"attachment_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_issues\": [\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"first_response_time\": \"1980-03-05T13:06:15.133Z\",\n      \"resolution_time\": \"1949-07-11T09:25:31.157Z\",\n      \"snoozed_until_time\": \"2013-04-09T21:47:57.929Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"number\": 2328,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"state\": \"string\",\n      \"created_at\": \"1993-06-03T11:43:04.751Z\",\n      \"updated_at\": \"2006-10-18T09:09:43.786Z\",\n      \"account\": {\n        \"id\": \"string\"\n      },\n      \"requester\": {\n        \"id\": \"string\"\n      },\n      \"assignee\": {\n        \"id\": \"string\"\n      },\n      \"team\": {\n        \"id\": \"string\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": {\n        \"key_0\": true,\n        \"key_1\": 1398,\n        \"key_2\": 4339\n      },\n      \"attachment_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_issues\": [\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"first_response_time\": \"1993-04-15T03:16:27.846Z\",\n      \"resolution_time\": \"1973-03-26T19:17:23.997Z\",\n      \"snoozed_until_time\": \"2021-03-06T12:51:57.433Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9f0749e-d46f-4497-b65a-d5d088648018",
+          "name": "Create an issue",
+          "request": {
+            "name": "Create an issue",
+            "description": {},
+            "url": {
+              "path": [
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"body_html\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"requester_id\": \"<string>\",\n  \"contact_id\": \"<string>\",\n  \"assignee_id\": \"<string>\",\n  \"team_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": 792.6326687918062,\n    \"key_1\": true\n  },\n  \"destination_metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 9869.388314774042\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9088505d-5a81-4e9a-ba9e-1101607e6148",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"body_html\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"requester_id\": \"<string>\",\n  \"contact_id\": \"<string>\",\n  \"assignee_id\": \"<string>\",\n  \"team_id\": \"<string>\",\n  \"state\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": true,\n    \"key_1\": 5312.932593901098,\n    \"key_2\": 5517\n  },\n  \"destination_metadata\": {\n    \"key_0\": 7624.627650683407,\n    \"key_1\": 148,\n    \"key_2\": 9326,\n    \"key_3\": 1416.0791418260853\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"number\": 3624,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"state\": \"string\",\n    \"created_at\": \"1994-11-29T03:39:27.302Z\",\n    \"updated_at\": \"1974-01-13T02:39:22.108Z\",\n    \"account\": {\n      \"id\": \"string\"\n    },\n    \"requester\": {\n      \"id\": \"string\"\n    },\n    \"assignee\": {\n      \"id\": \"string\"\n    },\n    \"team\": {\n      \"id\": \"string\"\n    },\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_fields\": {\n      \"key_0\": 8813,\n      \"key_1\": 5452,\n      \"key_2\": 6496\n    },\n    \"attachment_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"external_issues\": [\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      },\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      }\n    ],\n    \"first_response_time\": \"1950-11-24T01:50:56.959Z\",\n    \"resolution_time\": \"1997-03-01T06:06:04.659Z\",\n    \"snoozed_until_time\": \"1961-12-13T20:36:52.938Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3cb895c-8a18-477b-848a-ba967bb327db",
+          "name": "Get an issue",
+          "request": {
+            "name": "Get an issue",
+            "description": {
+              "content": "Fetch a single issue by ID or number.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15e75cb9-058d-4bd6-9bdb-f6bda22ddac4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"number\": 3624,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"state\": \"string\",\n    \"created_at\": \"1994-11-29T03:39:27.302Z\",\n    \"updated_at\": \"1974-01-13T02:39:22.108Z\",\n    \"account\": {\n      \"id\": \"string\"\n    },\n    \"requester\": {\n      \"id\": \"string\"\n    },\n    \"assignee\": {\n      \"id\": \"string\"\n    },\n    \"team\": {\n      \"id\": \"string\"\n    },\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_fields\": {\n      \"key_0\": 8813,\n      \"key_1\": 5452,\n      \"key_2\": 6496\n    },\n    \"attachment_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"external_issues\": [\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      },\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      }\n    ],\n    \"first_response_time\": \"1950-11-24T01:50:56.959Z\",\n    \"resolution_time\": \"1997-03-01T06:06:04.659Z\",\n    \"snoozed_until_time\": \"1961-12-13T20:36:52.938Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58214540-bd2f-4d5c-82e2-9ea52bf7c11c",
+          "name": "Update an issue",
+          "request": {
+            "name": "Update an issue",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"state\": \"<string>\",\n  \"assignee_id\": \"<string>\",\n  \"team_id\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": 1801.5407422830988\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8684adfe-cee0-4ee2-8e04-b02ccc443d85",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"state\": \"<string>\",\n  \"assignee_id\": \"<string>\",\n  \"team_id\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"custom_fields\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"number\": 3624,\n    \"title\": \"string\",\n    \"body_html\": \"string\",\n    \"state\": \"string\",\n    \"created_at\": \"1994-11-29T03:39:27.302Z\",\n    \"updated_at\": \"1974-01-13T02:39:22.108Z\",\n    \"account\": {\n      \"id\": \"string\"\n    },\n    \"requester\": {\n      \"id\": \"string\"\n    },\n    \"assignee\": {\n      \"id\": \"string\"\n    },\n    \"team\": {\n      \"id\": \"string\"\n    },\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"custom_fields\": {\n      \"key_0\": 8813,\n      \"key_1\": 5452,\n      \"key_2\": 6496\n    },\n    \"attachment_urls\": [\n      \"string\",\n      \"string\"\n    ],\n    \"external_issues\": [\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      },\n      {\n        \"external_id\": \"string\",\n        \"link\": \"string\",\n        \"source\": \"string\"\n      }\n    ],\n    \"first_response_time\": \"1950-11-24T01:50:56.959Z\",\n    \"resolution_time\": \"1997-03-01T06:06:04.659Z\",\n    \"snoozed_until_time\": \"1961-12-13T20:36:52.938Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afcf64d0-5cdf-44cb-8e3e-28480f40fc89",
+          "name": "Delete an issue",
+          "request": {
+            "name": "Delete an issue",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cce140b-2ca9-4436-bbf6-742965220fa9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3cb93a6e-5d83-4037-8347-a8606c4422e6",
+          "name": "Search issues",
+          "request": {
+            "name": "Search issues",
+            "description": {
+              "content": "Search issues using structured filters and fuzzy text.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"key_0\": \"string\",\n    \"key_1\": 8147,\n    \"key_2\": true,\n    \"key_3\": \"string\"\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8210f867-1024-468f-903b-2f546b8a91fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"key_0\": true,\n    \"key_1\": 4851,\n    \"key_2\": 9562.780387392375\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"number\": 5540,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"state\": \"string\",\n      \"created_at\": \"1969-07-26T13:41:16.349Z\",\n      \"updated_at\": \"1989-05-21T07:54:53.389Z\",\n      \"account\": {\n        \"id\": \"string\"\n      },\n      \"requester\": {\n        \"id\": \"string\"\n      },\n      \"assignee\": {\n        \"id\": \"string\"\n      },\n      \"team\": {\n        \"id\": \"string\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": {\n        \"key_0\": 7433\n      },\n      \"attachment_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_issues\": [\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"first_response_time\": \"2021-08-27T12:49:56.789Z\",\n      \"resolution_time\": \"1957-04-04T02:42:32.621Z\",\n      \"snoozed_until_time\": \"1987-05-22T18:08:49.062Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"number\": 7560,\n      \"title\": \"string\",\n      \"body_html\": \"string\",\n      \"state\": \"string\",\n      \"created_at\": \"2013-09-02T16:42:23.453Z\",\n      \"updated_at\": \"1971-01-15T12:03:18.914Z\",\n      \"account\": {\n        \"id\": \"string\"\n      },\n      \"requester\": {\n        \"id\": \"string\"\n      },\n      \"assignee\": {\n        \"id\": \"string\"\n      },\n      \"team\": {\n        \"id\": \"string\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom_fields\": {\n        \"key_0\": 3548.279572990771,\n        \"key_1\": 6533,\n        \"key_2\": 6218.310492553523\n      },\n      \"attachment_urls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"external_issues\": [\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        },\n        {\n          \"external_id\": \"string\",\n          \"link\": \"string\",\n          \"source\": \"string\"\n        }\n      ],\n      \"first_response_time\": \"1960-09-16T19:02:33.887Z\",\n      \"resolution_time\": \"1984-02-19T15:40:31.776Z\",\n      \"snoozed_until_time\": \"1956-09-09T19:45:35.762Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c970095d-b28f-4ce3-b4ab-a67d44da0b18",
+          "name": "Snooze an issue",
+          "request": {
+            "name": "Snooze an issue",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id",
+                "snooze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"snooze_until_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "09bde467-ea60-448a-8386-b47229fd173a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id",
+                    "snooze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snooze_until_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f48f96e2-f800-42e5-b7cf-06e77720a2e4",
+          "name": "List issue followers",
+          "request": {
+            "name": "List issue followers",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80cada06-b9da-4d29-8d88-bde41f24011f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatar_url\": \"string\",\n      \"role_id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"avatar_url\": \"string\",\n      \"role_id\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "475a4912-b5db-435e-aae5-edd9350f800d",
+          "name": "Add or remove issue followers",
+          "request": {
+            "name": "Add or remove issue followers",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"add_follower_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remove_follower_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9cd547e-7bcb-4f05-b1ea-fbee11606837",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"add_follower_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remove_follower_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1079bee-3352-4aa7-8b0e-f45847515aef",
+          "name": "Link or unlink external issues",
+          "request": {
+            "name": "Link or unlink external issues",
+            "description": {},
+            "url": {
+              "path": [
+                "issues",
+                ":id",
+                "external-issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link\": [\n    {\n      \"external_id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"unlink\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5bbaa691-c183-44fe-887e-f7aefcfbe251",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":id",
+                    "external-issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link\": [\n    {\n      \"external_id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"link\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"unlink\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usepylon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed690bad-6d9c-4c11-8f30-8ba4a00fa51d",
+    "name": "Pylon Accounts Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.\n\nContact Support:\n Name: Pylon Support",
+      "type": "text/plain"
+    }
+  }
+}

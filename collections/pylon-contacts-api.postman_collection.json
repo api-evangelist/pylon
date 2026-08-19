@@ -1,0 +1,620 @@
+{
+  "item": [
+    {
+      "id": "063aef11-eb2b-4578-ab7a-bf4984edf2eb",
+      "name": "Contacts",
+      "description": {
+        "content": "Individual contacts (end customers).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f8d6ee8-f9d2-44d9-a4cc-86efa995bbac",
+          "name": "List contacts",
+          "request": {
+            "name": "List contacts",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62603006-b791-48e8-b919-021ad2b8112c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"account_id\": \"string\",\n      \"avatar_url\": \"string\",\n      \"custom_fields\": {\n        \"key_0\": 8017,\n        \"key_1\": 9046.557765637772,\n        \"key_2\": 1790,\n        \"key_3\": 3744\n      },\n      \"created_at\": \"1986-08-25T13:46:08.612Z\",\n      \"updated_at\": \"1957-09-25T14:59:31.226Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"account_id\": \"string\",\n      \"avatar_url\": \"string\",\n      \"custom_fields\": {\n        \"key_0\": 680.9918459839548,\n        \"key_1\": 1439\n      },\n      \"created_at\": \"1976-07-15T03:54:44.075Z\",\n      \"updated_at\": \"2004-05-21T16:05:46.522Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56aa016e-12ff-4080-9ce7-6f4f72ee1cc9",
+          "name": "Create a contact",
+          "request": {
+            "name": "Create a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": 2417.041297014242\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ecb931c8-addb-4ae9-a14c-2ee0743e03e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": 3925.15621227967,\n    \"key_1\": 4701.509553962802,\n    \"key_2\": \"string\",\n    \"key_3\": 652\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"account_id\": \"string\",\n    \"avatar_url\": \"string\",\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": 5708.3403960449505,\n      \"key_2\": true\n    },\n    \"created_at\": \"1966-10-12T03:00:23.817Z\",\n    \"updated_at\": \"1998-07-07T14:01:40.899Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8305a6b-0c6e-4491-b869-f4f2b2e8ff44",
+          "name": "Get a contact",
+          "request": {
+            "name": "Get a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36ca1c9c-7938-4e99-9cd0-bc3c8dfd55ae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"account_id\": \"string\",\n    \"avatar_url\": \"string\",\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": 5708.3403960449505,\n      \"key_2\": true\n    },\n    \"created_at\": \"1966-10-12T03:00:23.817Z\",\n    \"updated_at\": \"1998-07-07T14:01:40.899Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa0266e4-82b9-4530-9a7a-21f13134a61c",
+          "name": "Update a contact",
+          "request": {
+            "name": "Update a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": 2417.041297014242\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ef503fe-40e4-4d57-9976-eb6fc2e910ff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"account_id\": \"<string>\",\n  \"custom_fields\": {\n    \"key_0\": 3925.15621227967,\n    \"key_1\": 4701.509553962802,\n    \"key_2\": \"string\",\n    \"key_3\": 652\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"account_id\": \"string\",\n    \"avatar_url\": \"string\",\n    \"custom_fields\": {\n      \"key_0\": \"string\",\n      \"key_1\": 5708.3403960449505,\n      \"key_2\": true\n    },\n    \"created_at\": \"1966-10-12T03:00:23.817Z\",\n    \"updated_at\": \"1998-07-07T14:01:40.899Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e415043d-9a0a-45d1-bbbc-c80996e5f4b1",
+          "name": "Delete a contact",
+          "request": {
+            "name": "Delete a contact",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6fb1c7f1-7adf-4e7a-a3d5-bf6d426ab54f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2a906de-ddb1-4b40-8e84-5bfb95c2c706",
+          "name": "Search contacts",
+          "request": {
+            "name": "Search contacts",
+            "description": {},
+            "url": {
+              "path": [
+                "contacts",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filter\": {\n    \"key_0\": 1227,\n    \"key_1\": 3238.4299822006,\n    \"key_2\": 3595,\n    \"key_3\": \"string\"\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3585a60-349a-44a2-8bbc-ae70bf18239e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filter\": {\n    \"key_0\": 2135.0424434859583\n  },\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"account_id\": \"string\",\n      \"avatar_url\": \"string\",\n      \"custom_fields\": {\n        \"key_0\": 6177,\n        \"key_1\": \"string\",\n        \"key_2\": false,\n        \"key_3\": \"string\"\n      },\n      \"created_at\": \"1968-05-14T21:40:42.208Z\",\n      \"updated_at\": \"1976-03-23T23:05:41.877Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"account_id\": \"string\",\n      \"avatar_url\": \"string\",\n      \"custom_fields\": {\n        \"key_0\": \"string\",\n        \"key_1\": 4560\n      },\n      \"created_at\": \"1999-12-17T16:58:55.663Z\",\n      \"updated_at\": \"2002-05-24T00:58:07.429Z\"\n    }\n  ],\n  \"pagination\": {\n    \"cursor\": \"string\",\n    \"has_next_page\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usepylon.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd461dc5-b772-4702-a8b4-3d5eefdb2ba2",
+    "name": "Pylon Accounts Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.\n\nContact Support:\n Name: Pylon Support",
+      "type": "text/plain"
+    }
+  }
+}
