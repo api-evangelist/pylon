@@ -6,6 +6,18 @@ description: Pylon (usepylon.com) is a B2B customer support and customer operati
   platform that unifies shared Slack, Microsoft Teams, email, and chat support into
   a single ticketing system, with a knowledge base, accounts and contacts, AI agents,
   and a documented public REST API at https://api.usepylon.com.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
