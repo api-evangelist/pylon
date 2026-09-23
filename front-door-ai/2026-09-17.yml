@@ -1,0 +1,30 @@
+# Front Door AI Index — pylon — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: pylon
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: usepylon.com
+  final_host: www.usepylon.com
+  ownership: own
+  owner: pylon
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 14
+  host_score: 14
+  density: 19.2
+  words: 729
+  tiers:
+    agentic: 9
+    core: 5
+    model: 0
+  ambiguous: 18
+  top_terms:
+    agent: 16
+    AI: 5
+    agentic: 5
+    AI agent: 3
+    intelligence: 2
+    MCP: 1

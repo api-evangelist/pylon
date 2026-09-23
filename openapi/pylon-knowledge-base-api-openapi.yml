@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Pylon Accounts Knowledge Base API
+  title: Pylon Knowledge Base API
   description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
   termsOfService: https://usepylon.com/terms
   contact:
@@ -239,13 +239,6 @@ paths:
           description: OK
 components:
   schemas:
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
     KnowledgeBase:
       type: object
       properties:
@@ -276,6 +269,13 @@ components:
         updated_at:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
     Collection:
       type: object
       properties:

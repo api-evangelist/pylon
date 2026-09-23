@@ -1,15 +1,7 @@
 {
   "provider": "pylon",
   "sources": [
-    "pylon-accounts-api-openapi.yml",
-    "pylon-contacts-api-openapi.yml",
-    "pylon-custom-fields-api-openapi.yml",
-    "pylon-issues-api-openapi.yml",
-    "pylon-knowledge-base-api-openapi.yml",
-    "pylon-tags-api-openapi.yml",
-    "pylon-tasks-api-openapi.yml",
-    "pylon-teams-api-openapi.yml",
-    "pylon-users-api-openapi.yml"
+    "_original/pylon-openapi.yml"
   ],
   "outputs": [
     "pylon-accounts-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "pylon-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pylon-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-custom-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-knowledge-base-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pylon-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

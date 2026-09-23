@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Pylon Accounts Users API
+  title: Pylon Users API
   description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
   termsOfService: https://usepylon.com/terms
   contact:
@@ -116,17 +116,6 @@ paths:
                       $ref: '#/components/schemas/User'
 components:
   schemas:
-    SearchRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-          additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
-        cursor:
-          type: string
-        limit:
-          type: integer
     User:
       type: object
       properties:
@@ -142,6 +131,17 @@ components:
           type: string
         status:
           type: string
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
     UserResponse:
       type: object
       properties:

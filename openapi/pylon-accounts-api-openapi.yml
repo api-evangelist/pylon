@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Pylon Accounts API
   description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
@@ -185,28 +185,32 @@ paths:
           description: OK
 components:
   schemas:
-    CreateAccountRequest:
+    AccountResponse:
       type: object
       properties:
-        name:
+        data:
+          $ref: '#/components/schemas/Account'
+    NamedRef:
+      type: object
+      properties:
+        id:
           type: string
-        type:
+    Pagination:
+      type: object
+      properties:
+        cursor:
           type: string
-        domains:
+        has_next_page:
+          type: boolean
+    AccountListResponse:
+      type: object
+      properties:
+        data:
           type: array
           items:
-            type: string
-        owner_id:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        custom_fields:
-          type: object
-          additionalProperties: true
-      required:
-      - name
+            $ref: '#/components/schemas/Account'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Account:
       type: object
       properties:
@@ -251,6 +255,28 @@ components:
         latest_customer_activity_time:
           type: string
           format: date-time
+    CreateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        owner_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+      - name
     SearchRequest:
       type: object
       properties:
@@ -262,32 +288,6 @@ components:
           type: string
         limit:
           type: integer
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
-    AccountResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Account'
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    AccountListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     bearerAuth:
       type: http

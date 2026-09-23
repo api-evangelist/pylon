@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Pylon Accounts Issues API
+  title: Pylon Issues API
   description: REST API for Pylon (usepylon.com), the B2B customer support and customer operations platform. Programmatically manage issues (tickets), accounts, contacts, users, teams, tags, custom fields, the knowledge base, and tasks/projects. Authentication uses a Bearer API token; only Admin users can create API tokens in Pylon settings.
   termsOfService: https://usepylon.com/terms
   contact:
@@ -243,6 +243,43 @@ paths:
           description: OK
 components:
   schemas:
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    UpdateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        state:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+    IssueResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Issue'
     ExternalIssue:
       type: object
       properties:
@@ -252,6 +289,39 @@ components:
           type: string
         source:
           type: string
+    CreateIssueRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        body_html:
+          type: string
+        account_id:
+          type: string
+        requester_id:
+          type: string
+        contact_id:
+          type: string
+        assignee_id:
+          type: string
+        team_id:
+          type: string
+        state:
+          type: string
+        priority:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+        destination_metadata:
+          type: object
+          additionalProperties: true
+      required:
+      - title
     Issue:
       type: object
       properties:
@@ -303,6 +373,21 @@ components:
         snoozed_until_time:
           type: string
           format: date-time
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        avatar_url:
+          type: string
+        role_id:
+          type: string
+        status:
+          type: string
     SearchRequest:
       type: object
       properties:
@@ -323,91 +408,6 @@ components:
             $ref: '#/components/schemas/Issue'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    CreateIssueRequest:
-      type: object
-      properties:
-        title:
-          type: string
-        body_html:
-          type: string
-        account_id:
-          type: string
-        requester_id:
-          type: string
-        contact_id:
-          type: string
-        assignee_id:
-          type: string
-        team_id:
-          type: string
-        state:
-          type: string
-        priority:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        custom_fields:
-          type: object
-          additionalProperties: true
-        destination_metadata:
-          type: object
-          additionalProperties: true
-      required:
-      - title
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-        avatar_url:
-          type: string
-        role_id:
-          type: string
-        status:
-          type: string
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
-    IssueResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Issue'
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    UpdateIssueRequest:
-      type: object
-      properties:
-        title:
-          type: string
-        state:
-          type: string
-        assignee_id:
-          type: string
-        team_id:
-          type: string
-        priority:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        custom_fields:
-          type: object
-          additionalProperties: true
   securitySchemes:
     bearerAuth:
       type: http
