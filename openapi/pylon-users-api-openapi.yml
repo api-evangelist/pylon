@@ -116,6 +116,17 @@ paths:
                       $ref: '#/components/schemas/User'
 components:
   schemas:
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
     User:
       type: object
       properties:
@@ -131,17 +142,6 @@ components:
           type: string
         status:
           type: string
-    SearchRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-          additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
-        cursor:
-          type: string
-        limit:
-          type: integer
     UserResponse:
       type: object
       properties:

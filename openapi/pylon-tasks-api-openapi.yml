@@ -245,6 +245,29 @@ paths:
           description: OK
 components:
   schemas:
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
+    Milestone:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        project_id:
+          type: string
+        due_date:
+          type: string
+          format: date-time
     Task:
       type: object
       properties:
@@ -265,17 +288,6 @@ components:
         due_date:
           type: string
           format: date-time
-    SearchRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-          additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
-        cursor:
-          type: string
-        limit:
-          type: integer
     Project:
       type: object
       properties:
@@ -289,18 +301,6 @@ components:
           type: string
         status:
           type: string
-    Milestone:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        project_id:
-          type: string
-        due_date:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

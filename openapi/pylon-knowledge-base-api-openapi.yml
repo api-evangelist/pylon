@@ -239,15 +239,24 @@ paths:
           description: OK
 components:
   schemas:
-    KnowledgeBase:
+    Collection:
       type: object
       properties:
         id:
           type: string
-        name:
+        title:
           type: string
-        slug:
+        description:
           type: string
+        parent_collection_id:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
     Article:
       type: object
       properties:
@@ -269,23 +278,14 @@ components:
         updated_at:
           type: string
           format: date-time
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    Collection:
+    KnowledgeBase:
       type: object
       properties:
         id:
           type: string
-        title:
+        name:
           type: string
-        description:
-          type: string
-        parent_collection_id:
+        slug:
           type: string
   securitySchemes:
     bearerAuth:

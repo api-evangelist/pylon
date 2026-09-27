@@ -34,7 +34,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pylon.png
 tags:
-- Customer-Support
+- Customer Support
 - Customer Operations
 - Ticketing
 - Knowledge Base
@@ -47,6 +47,7 @@ tags_raw:
 - Knowledge Base
 - B2B
 - Help Desk
+- Customer-Support
 created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.23'

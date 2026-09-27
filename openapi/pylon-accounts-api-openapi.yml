@@ -185,23 +185,44 @@ paths:
           description: OK
 components:
   schemas:
+    SearchRequest:
+      type: object
+      properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
+        cursor:
+          type: string
+        limit:
+          type: integer
     AccountResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Account'
-    NamedRef:
+    CreateAccountRequest:
       type: object
       properties:
-        id:
+        name:
           type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
+        type:
           type: string
-        has_next_page:
-          type: boolean
+        domains:
+          type: array
+          items:
+            type: string
+        owner_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+      - name
     AccountListResponse:
       type: object
       properties:
@@ -255,39 +276,18 @@ components:
         latest_customer_activity_time:
           type: string
           format: date-time
-    CreateAccountRequest:
+    Pagination:
       type: object
       properties:
-        name:
-          type: string
-        type:
-          type: string
-        domains:
-          type: array
-          items:
-            type: string
-        owner_id:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        custom_fields:
-          type: object
-          additionalProperties: true
-      required:
-      - name
-    SearchRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-          additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
         cursor:
           type: string
-        limit:
-          type: integer
+        has_next_page:
+          type: boolean
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

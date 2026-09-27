@@ -91,11 +91,11 @@ paths:
                 $ref: '#/components/schemas/TeamResponse'
 components:
   schemas:
-    TeamResponse:
+    NamedRef:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/Team'
+        id:
+          type: string
     Team:
       type: object
       properties:
@@ -107,6 +107,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NamedRef'
+    TeamResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Team'
     CreateTeamRequest:
       type: object
       properties:
@@ -118,11 +123,6 @@ components:
             type: string
       required:
       - name
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
