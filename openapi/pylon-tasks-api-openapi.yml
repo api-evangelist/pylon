@@ -245,6 +245,19 @@ paths:
           description: OK
 components:
   schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        account_id:
+          type: string
+        status:
+          type: string
     SearchRequest:
       type: object
       properties:
@@ -256,18 +269,6 @@ components:
           type: string
         limit:
           type: integer
-    Milestone:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        project_id:
-          type: string
-        due_date:
-          type: string
-          format: date-time
     Task:
       type: object
       properties:
@@ -288,19 +289,18 @@ components:
         due_date:
           type: string
           format: date-time
-    Project:
+    Milestone:
       type: object
       properties:
         id:
           type: string
         title:
           type: string
-        description:
+        project_id:
           type: string
-        account_id:
+        due_date:
           type: string
-        status:
-          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

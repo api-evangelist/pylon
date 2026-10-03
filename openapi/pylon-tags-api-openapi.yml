@@ -99,11 +99,6 @@ paths:
           description: OK
 components:
   schemas:
-    TagResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Tag'
     Tag:
       type: object
       properties:
@@ -115,6 +110,11 @@ components:
           type: string
         object_type:
           type: string
+    TagResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Tag'
     CreateTagRequest:
       type: object
       properties:

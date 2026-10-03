@@ -124,26 +124,6 @@ paths:
                 $ref: '#/components/schemas/ContactListResponse'
 components:
   schemas:
-    SearchRequest:
-      type: object
-      properties:
-        filter:
-          type: object
-          additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
-        cursor:
-          type: string
-        limit:
-          type: integer
-    ContactListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
     Contact:
       type: object
       properties:
@@ -166,6 +146,18 @@ components:
         updated_at:
           type: string
           format: date-time
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    ContactResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Contact'
     CreateContactRequest:
       type: object
       properties:
@@ -180,18 +172,26 @@ components:
           additionalProperties: true
       required:
       - email
-    ContactResponse:
+    ContactListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/Contact'
-    Pagination:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    SearchRequest:
       type: object
       properties:
+        filter:
+          type: object
+          additionalProperties: true
+          description: Structured filter expression with field, operator, and values.
         cursor:
           type: string
-        has_next_page:
-          type: boolean
+        limit:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

@@ -239,6 +239,22 @@ paths:
           description: OK
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
+    KnowledgeBase:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
     Collection:
       type: object
       properties:
@@ -250,13 +266,6 @@ components:
           type: string
         parent_collection_id:
           type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
     Article:
       type: object
       properties:
@@ -278,15 +287,6 @@ components:
         updated_at:
           type: string
           format: date-time
-    KnowledgeBase:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        slug:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

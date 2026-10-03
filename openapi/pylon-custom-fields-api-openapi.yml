@@ -91,6 +91,11 @@ paths:
                 $ref: '#/components/schemas/CustomFieldResponse'
 components:
   schemas:
+    CustomFieldResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/CustomField'
     CustomField:
       type: object
       properties:
@@ -108,11 +113,6 @@ components:
           type: array
           items:
             type: string
-    CustomFieldResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/CustomField'
   securitySchemes:
     bearerAuth:
       type: http
