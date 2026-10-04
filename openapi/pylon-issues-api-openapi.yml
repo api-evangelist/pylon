@@ -243,6 +243,30 @@ paths:
           description: OK
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        avatar_url:
+          type: string
+        role_id:
+          type: string
+        status:
+          type: string
+    ExternalIssue:
+      type: object
+      properties:
+        external_id:
+          type: string
+        link:
+          type: string
+        source:
+          type: string
     Issue:
       type: object
       properties:
@@ -294,6 +318,18 @@ components:
         snoozed_until_time:
           type: string
           format: date-time
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    Pagination:
+      type: object
+      properties:
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
     SearchRequest:
       type: object
       properties:
@@ -305,30 +341,20 @@ components:
           type: string
         limit:
           type: integer
-    ExternalIssue:
+    IssueListResponse:
       type: object
       properties:
-        external_id:
-          type: string
-        link:
-          type: string
-        source:
-          type: string
-    User:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    IssueResponse:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-        avatar_url:
-          type: string
-        role_id:
-          type: string
-        status:
-          type: string
+        data:
+          $ref: '#/components/schemas/Issue'
     UpdateIssueRequest:
       type: object
       properties:
@@ -382,32 +408,6 @@ components:
           additionalProperties: true
       required:
       - title
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    IssueResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Issue'
-    IssueListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
   securitySchemes:
     bearerAuth:
       type: http

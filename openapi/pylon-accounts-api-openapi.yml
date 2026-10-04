@@ -185,6 +185,47 @@ paths:
           description: OK
 components:
   schemas:
+    CreateAccountRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        owner_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        custom_fields:
+          type: object
+          additionalProperties: true
+      required:
+      - name
+    AccountListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
+    AccountResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Account'
     SearchRequest:
       type: object
       properties:
@@ -196,15 +237,13 @@ components:
           type: string
         limit:
           type: integer
-    AccountListResponse:
+    Pagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        cursor:
+          type: string
+        has_next_page:
+          type: boolean
     Account:
       type: object
       properties:
@@ -249,45 +288,6 @@ components:
         latest_customer_activity_time:
           type: string
           format: date-time
-    CreateAccountRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        domains:
-          type: array
-          items:
-            type: string
-        owner_id:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        custom_fields:
-          type: object
-          additionalProperties: true
-      required:
-      - name
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
-    Pagination:
-      type: object
-      properties:
-        cursor:
-          type: string
-        has_next_page:
-          type: boolean
-    AccountResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Account'
   securitySchemes:
     bearerAuth:
       type: http

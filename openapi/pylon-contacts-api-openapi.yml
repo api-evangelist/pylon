@@ -124,28 +124,17 @@ paths:
                 $ref: '#/components/schemas/ContactListResponse'
 components:
   schemas:
-    Contact:
+    SearchRequest:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
-        account_id:
-          type: string
-        avatar_url:
-          type: string
-        custom_fields:
+        filter:
           type: object
           additionalProperties: true
-        created_at:
+          description: Structured filter expression with field, operator, and values.
+        cursor:
           type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
+        limit:
+          type: integer
     Pagination:
       type: object
       properties:
@@ -181,17 +170,28 @@ components:
             $ref: '#/components/schemas/Contact'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    SearchRequest:
+    Contact:
       type: object
       properties:
-        filter:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        account_id:
+          type: string
+        avatar_url:
+          type: string
+        custom_fields:
           type: object
           additionalProperties: true
-          description: Structured filter expression with field, operator, and values.
-        cursor:
+        created_at:
           type: string
-        limit:
-          type: integer
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

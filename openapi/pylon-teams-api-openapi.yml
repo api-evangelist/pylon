@@ -102,11 +102,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NamedRef'
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: string
     CreateTeamRequest:
       type: object
       properties:
@@ -123,6 +118,11 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Team'
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
