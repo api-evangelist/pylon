@@ -385,6 +385,9 @@ apis:
   - type: Documentation
     url: https://docs.usepylon.com/pylon-docs/developer/webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/pylon-capability-edges.yml
+  name: Pylon Business Capability Map
 - type: AgenticAccess
   url: agentic-access/pylon-agentic-access.yml
 - type: TrustCenter

@@ -1,0 +1,54 @@
+slug: pylon
+provider: Pylon
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Accounts
+  spec_file: pylon-accounts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.78
+  evidence: POST /accounts/merge  mergeAccounts  Merge accounts; 'Programmatically manage issues (tickets),
+    accounts, contacts'
+  reason: CRUD, search and merge over customer company records in a B2B support platform is customer master
+    data maintenance including identity resolution via merge.
+- tag: Contacts
+  spec_file: pylon-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.75
+  evidence: POST /contacts  createContact  Create a contact; schema Contact, CreateContactRequest
+  reason: Lifecycle management of customer contact records (the people at customer accounts) is customer
+    data management within the support/CRM platform.
+- tag: Knowledge Base
+  spec_file: pylon-knowledge-base-api-openapi.yml
+  capability_id: BC-430.40
+  capability_id_l1: BC-430
+  capability_name: Self-Service Management
+  confidence: 0.75
+  evidence: GET /knowledge-bases/{id}/articles  listArticles; POST /knowledge-bases/{id}/collections  createCollection
+  reason: Authoring and organising help-centre articles and collections in a customer support platform
+    is customer self-service knowledge base management rather than internal organisational knowledge management.
+- tag: Issues
+  spec_file: pylon-issues-api-openapi.yml
+  capability_id: BC-430.10
+  capability_id_l1: BC-430
+  capability_name: Customer Inquiry Management
+  confidence: 0.7
+  evidence: 'POST /issues  createIssue  Create an issue; POST /issues/{id}/snooze  snoozeIssue; description:
+    ''manage issues (tickets)'''
+  reason: Issues here are support tickets raised by customers, with followers, snoozing and external linking
+    — inbound customer contact capture, routing and resolution. Some ambiguity between inquiry handling
+    and complaint management sub-capabilities.
