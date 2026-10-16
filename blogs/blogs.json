@@ -2,16 +2,21 @@
   "repo": "pylon",
   "feeds": [
     {
+      "source": "https://usepylon.com/blog",
+      "feed_url": "https://usepylon.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.usepylon.com/blog",
       "feed_url": "https://www.usepylon.com/blog",
-      "title": "Pylon Blog",
+      "title": "",
       "saved": 0,
-      "error": "parse_failed",
-      "nature": "vendor-blog",
-      "nature_basis": "path_blog"
+      "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:15:37Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "post_count": 2,
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
