@@ -7,6 +7,7 @@ checked:
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://marketplace.atlassian.com/
 - https://zapier.com/api/v4/apps/
+- slack/integrations/slack-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Atlassian Marketplace
@@ -105,5 +106,22 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A04CDB4SADV-pylon
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Pylon
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 source:
 - https://marketplace.atlassian.com/
