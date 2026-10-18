@@ -68,7 +68,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: pylon-fivetran
   label: Fivetran
@@ -94,7 +94,7 @@
     - connectors/applications/pylon-support-platform
     vendor_link: https://usepylon.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: pylon-slack-own
   label: Slack (own)
