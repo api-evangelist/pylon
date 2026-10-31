@@ -1,4 +1,4 @@
-# Pylon (pylon)
+# Pylon
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,195 +66,132 @@
 
 Pylon (usepylon.com) is a B2B customer support and customer operations platform that unifies shared Slack, Microsoft Teams, email, and chat support into a single ticketing system, with a knowledge base, accounts and contacts, AI agents, and a documented public REST API at https://api.usepylon.com.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/pylon/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/pylon/refs/heads/main/apis.yml)
+**Areas:** Customer Service · Customer Operations · Ticketing · Knowledge Base · B2B · Help Desk
 
-## Tags
+## Pylon on APIs.io
 
-- Customer Support
-- Customer Operations
-- Ticketing
-- Knowledge Base
-- B2B
-- Help Desk
+Everything profiled for Pylon is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pylon/](https://apis.io/providers/pylon/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Pylon Accounts API](https://apis.io/apis/pylon/pylon-accounts-api/) — Customer accounts.
+- [Pylon Contacts API](https://apis.io/apis/pylon/pylon-contacts-api/) — Individual contacts (end customers).
+- [Pylon Custom Fields API](https://apis.io/apis/pylon/pylon-custom-fields-api/) — Custom field definitions.
+- [Pylon Issues API](https://apis.io/apis/pylon/pylon-issues-api/) — Support issues (tickets).
+- [Pylon Knowledge Base API](https://apis.io/apis/pylon/pylon-knowledge-base-api/) — Knowledge bases, collections, and articles.
+- [Pylon Tags API](https://apis.io/apis/pylon/pylon-tags-api/) — Tags used across issues, accounts, and contacts.
+- [Pylon Tasks API](https://apis.io/apis/pylon/pylon-tasks-api/) — Tasks, projects, and milestones.
+- [Pylon Teams API](https://apis.io/apis/pylon/pylon-teams-api/) — Support teams.
+- [Pylon Users API](https://apis.io/apis/pylon/pylon-users-api/) — Internal Pylon users (agents).
 
-## APIs
+### Published properties
 
-### Pylon Issues API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, retrieve, update, search, snooze, and delete support issues (tickets) across shared Slack, Teams, email, and chat channels, plus manage issue followers and external issue links.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues)
-- **Base URL:** `https://api.usepylon.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Pylon Agentic Access](https://apis.io/agentic-access/pylon/pylon-agentic-access/)
 
-- Issues
-- Tickets
-- Support
+#### Collections (10)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.usepylon.com/pylon-docs/developer/api)
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/issues)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Pylon API](https://apis.io/collections/pylon/open-pylon/)
+- [Pylon Accounts API](https://apis.io/collections/pylon/open-pylon-accounts-api/)
+- [Pylon Accounts Contacts API](https://apis.io/collections/pylon/open-pylon-contacts-api/)
+- [Pylon Accounts Custom Fields API](https://apis.io/collections/pylon/open-pylon-custom-fields-api/)
+- [Pylon Accounts Issues API](https://apis.io/collections/pylon/open-pylon-issues-api/)
+- [Pylon Accounts Knowledge Base API](https://apis.io/collections/pylon/open-pylon-knowledge-base-api/)
+- [Pylon Accounts Tags API](https://apis.io/collections/pylon/open-pylon-tags-api/)
+- [Pylon Accounts Tasks API](https://apis.io/collections/pylon/open-pylon-tasks-api/)
+- [Pylon Accounts Teams API](https://apis.io/collections/pylon/open-pylon-teams-api/)
+- [Pylon Accounts Users API](https://apis.io/collections/pylon/open-pylon-users-api/)
 
-### Pylon Accounts API
+#### Security (3)
 
-Manage customer accounts - create, list, update (single or bulk), search, merge, and delete - including domains, owners, tags, custom fields, and CRM settings.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts)
-- **Base URL:** `https://api.usepylon.com`
+- [Pylon Authentication](https://apis.io/security/pylon/pylon-authentication/)
+- [Pylon Domain Security](https://apis.io/security/pylon/pylon-domain-security/)
+- [Pylon Trust Center](https://apis.io/security/pylon/pylon-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Accounts
-- Customers
-- CRM
+Published plans, tiers and prices.
 
-#### Properties
+- [Pylon Plans Pricing](https://apis.io/plans/pylon/pylon-plans-pricing/)
 
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Pylon Contacts API
+Published request limits.
 
-Create, retrieve, update, search, and delete the individual contacts (end customers) associated with accounts and issues.
+- [Pylon Rate Limits](https://apis.io/rate-limits/pylon/pylon-rate-limits/)
 
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/contacts](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/contacts)
-- **Base URL:** `https://api.usepylon.com`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Contacts
-- People
-- Customers
+- [Pylon Finops](https://apis.io/finops/pylon/pylon-finops/)
 
-#### Properties
+## Where to find this API
 
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/contacts)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Pylon Users and Teams API
-
-List, retrieve, update, and search internal Pylon users (agents), inspect the authenticated user via /me, and create, list, retrieve, and update support teams.
-
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users)
-- **Base URL:** `https://api.usepylon.com`
-
-#### Tags
-
-- Users
-- Teams
-- Organization
-
-#### Properties
-
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users)
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/teams)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pylon Knowledge Base API
-
-Manage knowledge bases, their collections, and articles - listing knowledge bases and performing full CRUD on collections, articles, and route redirects.
-
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/knowledge-base](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/knowledge-base)
-- **Base URL:** `https://api.usepylon.com`
-
-#### Tags
-
-- Knowledge Base
-- Articles
-- Collections
-
-#### Properties
-
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/knowledge-base)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pylon Tags and Custom Fields API
-
-Create, list, retrieve, update, and delete tags, and create, list, retrieve, and update custom field definitions used to extend issues, accounts, and contacts.
-
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tags](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tags)
-- **Base URL:** `https://api.usepylon.com`
-
-#### Tags
-
-- Tags
-- Custom Fields
-- Metadata
-
-#### Properties
-
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tags)
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/custom-fields)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pylon Tasks and Projects API
-
-Manage customer-facing work with full CRUD and search on tasks, projects, and milestones tied to accounts.
-
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tasks-and-projects](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tasks-and-projects)
-- **Base URL:** `https://api.usepylon.com`
-
-#### Tags
-
-- Tasks
-- Projects
-- Milestones
-
-#### Properties
-
-- [API Reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/tasks-and-projects)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/pylon.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/pylon.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Pylon Webhooks API
-
-User-defined HTTP callbacks fired by Pylon Triggers on platform events (such as issue created or updated). Each delivery carries an HS256-signed timestamped signature header for verification.
-
-- **Human URL:** [https://docs.usepylon.com/pylon-docs/developer/webhooks](https://docs.usepylon.com/pylon-docs/developer/webhooks)
-- **Base URL:** `https://api.usepylon.com`
-
-#### Tags
-
-- Webhooks
-- Events
-- Triggers
-
-#### Properties
-
-- [Documentation](https://docs.usepylon.com/pylon-docs/developer/webhooks)
-- [OpenAPI](openapi/pylon-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/usepylon)
 - [Website](https://usepylon.com/)
 - [Documentation](https://docs.usepylon.com/pylon-docs/developer/api)
-- [Plans](plans/pylon-plans-pricing.yml)
-- [Rate Limits](rate-limits/pylon-rate-limits.yml)
-- [Fin Ops](finops/pylon-finops.yml)
+- [Blog](https://usepylon.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 48.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pylon/](https://apis.io/providers/pylon/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pylon: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pylon/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
